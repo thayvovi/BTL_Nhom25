@@ -29,7 +29,7 @@
 
     <!-- Nav Item - Tuyến xe -->
     <li class="nav-item p-l-5">
-        <a class="nav-link" href="index.php?controller=users&action=logout">
+        <a class="nav-link" href="index.php?controller=bus&action=home">
             <i class="fas fa-road"></i>
             <span>Tuyến Xe</span>
         </a>

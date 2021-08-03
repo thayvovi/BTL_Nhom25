@@ -6,7 +6,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title><?php echo $title; ?></title>
-    <base href="http://localhost/Nhom25_2/"> <!-- đường dẫn cơ bản -->
+    <base href="http://localhost/BTL_Nhom25/"> <!-- đường dẫn cơ bản -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="assets/js/all.js" crossorigin="anonymous"></script>

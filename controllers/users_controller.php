@@ -26,7 +26,7 @@ class UsersController extends BaseController
                     $_SESSION['User_name'] = $getAccount->ten_khach;
                     $_SESSION['User_level'] = $getAccount->level;
                     if($getAccount->level == false)
-                        header("Location: index.php?controller=pages&action=home");
+                        header("Location: ./");
                     else {                        
                         header("Location: admin");
                     }

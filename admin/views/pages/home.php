@@ -1,6 +1,4 @@
-<?php if (isset($_SESSION['User_id']) && $_SESSION['User_level'] == 1): ?>
 <?php $title = 'Admin'; ?>
-
 <!-- Main Content -->
 <div id="content">
     <!-- Begin Page Content -->
@@ -177,12 +175,4 @@
 
     </div>
     <!-- /.container-fluid -->
-
 </div>
-<?php else: ?>
-	<script>
-		alert("Bạn chưa đăng nhập. Vui lòng đăng nhập trước");
-		location.href = "../index.php?controller=users&action=index";
-	</script>
-<!-- End of Main Content -->
-<?php endif ?>

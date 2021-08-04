@@ -10,12 +10,36 @@ class PagesController extends BaseController
 
     public function home()
     {
-    	$this->render("home");
+    	if(!empty($_SESSION['User_id']))
+        {
+            if (!empty($_SESSION['User_level']) && $_SESSION['User_level'] == 1) {
+                $this->render("home");
+            }
+            else{
+                header("location: ../");
+            }
+        }else{
+            echo '<script>';
+            echo "location.href= '../index.php?controller=users&action=index';";
+            echo '</script>';
+        }
     }
 
     public function error()
     {
-    	$this->render("error");
+        if(!empty($_SESSION['User_id']))
+        {
+            if (!empty($_SESSION['User_level']) && $_SESSION['User_level'] == 1) {
+                $this->render("error");
+            }
+            else{
+                header("location: ../");
+            }
+        }else{
+            echo '<script>';
+            echo "location.href= '../index.php?controller=users&action=index';";
+            echo '</script>';
+        }
     }
 }
 

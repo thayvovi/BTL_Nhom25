@@ -1,16 +1,14 @@
 <?php  
 class Bus{
 	public $id;
-	public $idBus; 
 	public $idRoute; 
 	public $date; 
 	public $time;
 	public $totalSeat;
 	
-	public function __construct($id, $idBus, $idRoute, $date, $time, $totalSeat)
+	public function __construct($id, $idRoute, $date, $time, $totalSeat)
 	{
 		$this->id = $id;
-		$this->idBus = $idBus;
 		$this->idRoute = $idRoute;
 		$this->date = $date;
 		$this->time = $time;
@@ -23,7 +21,7 @@ class Bus{
 		$query = $db->query('SELECT * FROM xe');
 
 		foreach ($query->fetchAll(PDO::FETCH_ASSOC) as $item) {
-			$list[] = new Bus($item['id'],$item['idBus'],$item['idRoute'],$item['date'],$item['time'],$item['totalSeat']);
+			$list[] = new Bus($item['id'],$item['idRoute'],$item['date'],$item['time'],$item['totalSeat']);
 		}
 
 		return $list;

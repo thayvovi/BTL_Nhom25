@@ -89,7 +89,7 @@
                     foreach ($xe as $xe) {
                         if ($xe->idRoute == $id) {
                             foreach ($routes as $route) {
-                                if ($xe->idRoute == $route->id) {
+                                if ($xe->idRoute === $route->id) {
                                     echo '<div class="form-group">';
                                     echo '<h4>Tên người đi</h4><input type="text" name="name" class="form-control" placeholder="Họ và tên người đi">';
                                     echo '</div>';

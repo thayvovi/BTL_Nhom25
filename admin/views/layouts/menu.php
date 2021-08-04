@@ -27,17 +27,25 @@
         Menu
     </div>
 
+    <!-- Nav Item - Người dùng -->
+    <li class="nav-item p-l-0">
+        <a class="nav-link" href="./">
+            <i class="far fa-calendar-check"></i>
+            <span>Lịch trình</span>
+        </a>
+    </li>
+    
     <!-- Nav Item - Tuyến xe -->
     <li class="nav-item p-l-5">
-        <a class="nav-link" href="index.php?controller=bus&action=home">
-            <i class="fas fa-road"></i>
+        <a class="nav-link" href="index.php?controller=route&action=home">
+            <i class="fas fa-route"></i>
             <span>Tuyến Xe</span>
         </a>
     </li>
 
     <!-- Nav Item - Xe chạy -->
     <li class="nav-item pl-lg-0">
-        <a class="nav-link" href="./">
+        <a class="nav-link" href="index.php?controller=bus&action=home">
             <i class="fas fa-bus"></i>
             <span>Xe chạy</span>
         </a>

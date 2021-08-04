@@ -36,19 +36,22 @@
 						<?php foreach($tickets as $ticket) {
 							if ($ticket->sdt === $_SESSION['User_sdt']){
 								foreach ($buses as $bus) {
-									if($ticket->idBus === $bus->idBus){
+									if($ticket->idBus === $bus->id){
 										foreach ($routes as $route) {
 											if ($bus->idRoute === $route->id) {
 						?>
 								<tr>
 									<td><?php echo $route->routeName; ?></td>
 					              	<td><?php echo $ticket->userName; ?></td>
-					              	<td><?php echo $ticket->sdt; ?></td>
+					              	<td>0<?php echo $ticket->sdt; ?></td>
 					              	<td><?php echo $ticket->seat; ?></td>
 					              	<td><?php echo $ticket->ngay; ?></td>
 					              	<td><?php echo $ticket->gio; ?></td>
 					              	<td><?php echo $ticket->diem_don; ?></td>
-					              	<td><i class="fas fa-edit"></i><i class="far fa-trash-alt ml-5"></i></td>
+					              	<td>
+		                                <a class="my-auto" href="#"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>
+		                                <a href="#"><button class="btn btn-danger"><i class="fas fa-trash"></i></button></a>
+		                            </td>
 					            </tr>
 						<?php } } } } } }?>
 			        </tbody>

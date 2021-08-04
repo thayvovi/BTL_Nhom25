@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 03, 2021 lúc 09:53 AM
+-- Thời gian đã tạo: Th8 04, 2021 lúc 06:42 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -113,7 +113,6 @@ INSERT INTO `users` (`id`, `ten_khach`, `mat_khau`, `sdt`, `dia_chi`, `level`) V
 
 CREATE TABLE `xe` (
   `id` int(11) NOT NULL,
-  `idBus` int(11) NOT NULL,
   `idRoute` int(11) NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
@@ -124,9 +123,12 @@ CREATE TABLE `xe` (
 -- Đang đổ dữ liệu cho bảng `xe`
 --
 
-INSERT INTO `xe` (`id`, `idBus`, `idRoute`, `date`, `time`, `totalSeat`) VALUES
-(1, 1, 1, '2021-07-31', '07:00:00', 40),
-(2, 2, 4, '2021-07-31', '07:00:00', 40);
+INSERT INTO `xe` (`id`, `idRoute`, `date`, `time`, `totalSeat`) VALUES
+(1, 1, '2021-07-31', '07:00:00', 40),
+(2, 4, '2021-07-31', '07:00:00', 40),
+(3, 2, '2021-07-31', '17:39:04', 30),
+(4, 2, '2021-08-04', '23:39:50', 30),
+(5, 2, '2021-07-31', '17:39:04', 30);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -194,7 +196,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `xe`
 --
 ALTER TABLE `xe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

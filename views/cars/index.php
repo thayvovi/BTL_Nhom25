@@ -33,8 +33,8 @@
                   if($xe->idRoute == $route->id){
                     echo '<tr>';
                     echo '<td>'.$route->routeName.'</td>';
-                    echo '<td>'.$xe->date.'</td>';
-                    echo '<td>'.$xe->time.'</td>';
+                    echo '<td>'.$xe->ngay.'</td>';
+                    echo '<td>'.$xe->gio.'</td>';
                     echo '<td>'.$route->totalBus.'</td>';?>
                     <td><a href="index.php?controller=cars&action=create&id=<?php echo $xe->idRoute;?>"><button class="btn btn-primary">Đặt vé</button></a></td>
                     <?php echo '</tr>';

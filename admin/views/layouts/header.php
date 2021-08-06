@@ -9,6 +9,9 @@
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
     <!-- Custom styles for this template-->
     <link href="../assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet" />
+    <script src="../assets/js/all.js" crossorigin="anonymous"></script>
+    <script language="javascript" src="../assets/js/jquery-2.0.0.min.js"></script>
     <!-- Custom styles for this page -->
     <link href="../assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 	<title><?php echo $title; ?></title>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 04, 2021 lúc 06:42 PM
+-- Thời gian đã tạo: Th8 06, 2021 lúc 01:11 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -40,7 +40,8 @@ CREATE TABLE `bus_route` (
 INSERT INTO `bus_route` (`id`, `routeName`, `totalBus`) VALUES
 (1, 'Nam Định <-> Hà Nội', 5),
 (2, 'Thái Bình đến Nam Định', 5),
-(4, 'Hải Phòng đến Hưng Yên', 2);
+(4, 'Hải Phòng đến Hưng Yên', 2),
+(5, 'TP.HCM <-> Hà Nội', 2);
 
 -- --------------------------------------------------------
 
@@ -114,8 +115,8 @@ INSERT INTO `users` (`id`, `ten_khach`, `mat_khau`, `sdt`, `dia_chi`, `level`) V
 CREATE TABLE `xe` (
   `id` int(11) NOT NULL,
   `idRoute` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `time` time NOT NULL,
+  `ngay` date NOT NULL,
+  `gio` time NOT NULL,
   `totalSeat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -123,12 +124,9 @@ CREATE TABLE `xe` (
 -- Đang đổ dữ liệu cho bảng `xe`
 --
 
-INSERT INTO `xe` (`id`, `idRoute`, `date`, `time`, `totalSeat`) VALUES
-(1, 1, '2021-07-31', '07:00:00', 40),
-(2, 4, '2021-07-31', '07:00:00', 40),
-(3, 2, '2021-07-31', '17:39:04', 30),
-(4, 2, '2021-08-04', '23:39:50', 30),
-(5, 2, '2021-07-31', '17:39:04', 30);
+INSERT INTO `xe` (`id`, `idRoute`, `ngay`, `gio`, `totalSeat`) VALUES
+(1, 1, '2021-08-06', '07:00:00', 30),
+(2, 4, '2021-07-31', '07:00:00', 50);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -172,7 +170,7 @@ ALTER TABLE `xe`
 -- AUTO_INCREMENT cho bảng `bus_route`
 --
 ALTER TABLE `bus_route`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `seat_details`
@@ -196,7 +194,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `xe`
 --
 ALTER TABLE `xe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

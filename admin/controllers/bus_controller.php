@@ -15,7 +15,7 @@ class BusController extends BaseController
         $bus = BusModel::selected();
         $routes = RouteModel::selected();
         $data = array(
-            "bus" => $bus,
+            "buses" => $bus,
             "routes" => $routes,
         );
     	if(!empty($_SESSION['User_id']))
@@ -95,10 +95,10 @@ class BusController extends BaseController
                 if (isset($_GET['id'])) {
                     $route = RouteModel::selected();
 
-                    $bus = BusModel::selected();
+                    $buses = BusModel::selected();
 
                     $data = array(
-                        "buses" => $bus,
+                        "buses" => $buses,
                         "routes" => $route,
                     );
 
@@ -158,16 +158,9 @@ class BusController extends BaseController
     {
         if (isset($_GET['id'])) {
             $id= $_GET['id'];
-
-            
-            // echo '<script>';
-            // echo 'const confirm = confirm("Bạn có chắc muốn xóa tuyến xe này hay không?")';
-            // echo 'if(confirm == true) {'.BusModel::delete($id).';';
-            // echo 'location.href="index.php?controller=bus&action=home;}';
-            // echo 'else location.href="index.php?controller=bus&action=home;';
-            // echo '</script>';
-            // 
-            echo "Trang xóa";
+            // BusModel::delete($id)
+            // header("location: index.php?controller=bus&action=home");
+            echo $id;
         }
         else{
             echo '<script>alert("Bạn chưa chọn tuyến xe để xóa");';

@@ -9,6 +9,7 @@ if(isset($_SERVER['HTTP_REFERER'])) {
 
     <!-- Page Heading -->
     <h1 class="h1 mb-2 text-gray-900"> 
+      Thông tin:
       <?php foreach ($buses as $bus): ?>
         <?php if ($bus->id == $_GET['id']): ?>
           <?php foreach ($routes as $route): ?>
@@ -30,7 +31,7 @@ if(isset($_SERVER['HTTP_REFERER'])) {
             <form action="index.php?controller=bus&action=update_bus&id=<?php if(isset($_GET['id'])) echo $_GET['id']; else header("location: indexx.php?controller=bus&action=error");?>" method="post" class="row g-3">
               <div class="col-md-6">
                 <label for="route" class="form-label">Tuyến Xe</label>
-                <select id="route" name="route" class="form-control form-select">
+                <select id="route" name="route" class="form-control form-select" autofocus>
                   <?php foreach ($buses as $bus) {
                     if($bus->id == $_GET['id']){
                       foreach ($routes as $route) {

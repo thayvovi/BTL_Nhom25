@@ -19,7 +19,7 @@ if(isset($_SERVER['HTTP_REFERER'])) {
             <form action="index.php?controller=bus&action=store" method="post" class="row g-3">
               <div class="col-md-6">
                 <label for="route" class="form-label">Tuyến Xe</label>
-                <select id="route" name="route" class="form-control form-select">
+                <select id="route" name="route" class="form-control form-select" autofocus>
                   <option selected disabled="disabled">===Chọn tuyến xe===</option>
                   <?php foreach ($routes as $route) {
                       echo '<option value='.$route->id.'>'.$route->routeName.'</option>';

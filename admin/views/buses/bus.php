@@ -25,7 +25,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($bus as $bus) {
+                        <?php foreach ($buses as $bus) {
                             foreach ($routes as $route) {
                                 if ($bus->idRoute == $route->id) {
                                     echo '<tr>';
@@ -34,16 +34,17 @@
                                         echo '<td>'.$bus->ngay.'</td>';
                                         echo '<td>'.$bus->gio.'</td>';
                                         echo '<td>'.$route->totalBus.'</td>';
-                                        echo '<td><a href="#" data-toggle="modal" data-target="#logoutModal">'.$bus->totalSeat.'</a></td>';
+                                        echo '<td><a href="#" data-toggle="modal" data-target="#seat">'.$bus->totalSeat.'</a></td>';
                                         echo '<td>';
                                             echo '<a class="mr-2" href="index.php?controller=bus&action=edit&id='.$bus->id.'"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>';
-                                            echo '<a onClick="return confirm("bạn có muốn xóa tuyến xe này hay không");" href="index.php?controller=bus&action=delete&id='.$bus->id.'" ><button class="btn btn-danger"><i class="fas fa-trash"></i></button></a>';
+                                            echo '<button class="btn btn-danger" data-toggle="modal" data-target="#deleteBus"><i class="fas fa-trash"></i></button>';
                                         echo '</td>';
                                     echo '</tr>';
+                                
                                 }
                             }
                         } ?>
-                        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        <div class="modal fade" id="seat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -75,12 +76,34 @@
                                     </div>
                                 </div>
                         </div>
+
+                        <!-- Phần xóa -->
+                        <div class="modal modal-danger fade" id="deleteBus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Cảnh báo: </h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                     <div class="modal-body">
+                                        <h1 class="h3 mb-2 text-gray-900">Bạn đang xóa: <br></h1>
+                                            Tuyến Xe: <?php  echo $route->routeName; ?><br>
+                                            Chạy ngày: <?php echo $bus->ngay; ?>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-danger" href="index.php?controller=bus&action=delete&id=<?php echo $bus->id;?>">Xóa</a>
+                                        <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
 </div>
 
 <!-- /.container-fluid -->

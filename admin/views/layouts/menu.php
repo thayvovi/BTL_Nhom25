@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon">
             <i class="fas fa-bus-alt"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Phần Admin</div>
+        <div class="sidebar-brand-text mx-3">N25(Admin)</div>
     </a>
 
     <!-- Divider -->

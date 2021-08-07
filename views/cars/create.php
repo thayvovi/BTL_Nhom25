@@ -185,7 +185,7 @@
                 let value = parseInt(val, 10);
                 // document.getElementById("seatSelected").value += val+" ";
                 if (document.getElementById("seatSelected").value != value) {
-                    document.getElementById("seatSelected").value += value+" ";
+                    document.getElementById("seatSelected").value = value;
                 }
                 console.log(typeof value);
             }

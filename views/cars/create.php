@@ -12,70 +12,6 @@
         </div>
     </div>
 </header>
-<style type="text/css" media="screen">
-    /*Căn chỉnh chú thích*/
-    .showcase{
-        background-color: rgba(0,0,0,,0.1);
-        padding: 5px 10px;
-        border-radius: 5px;
-        color: #000;
-        list-style-type: none;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .showcase li{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 10px;
-    }
-    .showcase li small{
-        margin-left: 10px;
-    }
-    .showcase .seat:not(.occupied,.driver):hover{
-        cursor: default;
-        transform: scale(1.0);
-    }
-    /*
-    Căn chỉnh wrapper
-     */
-    .wrapper{
-        perspective: 1000px;
-        margin-bottom: 30px;
-    }
-    .row{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .seat{
-        background-color: #444451;
-        color: #fff;
-        width: 50px;
-        height: 40px;
-        margin: 5px 10px;
-        text-align: center;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-    }
-    .seat.driver{
-        background-color: green;
-    }
-    .seat.selected{
-       background-color: blue; 
-    }
-    .seat.occupied {
-        background-color: red;
-    }
-    .seatP:nth-last-of-type(2){
-        margin-left: 5px;
-    }
-    .seat:not(.occupied,.driver):hover{
-        cursor: pointer;
-        transform: scale(1.5);
-    }
-</style>
 <div class="container-fluid px-4 px-lg-5">
     <div class="row gx-5 justify-content-center">
         <div class="col-md-4">
@@ -103,11 +39,11 @@
                                     echo '</div>';
 
                                     echo '<div class="form-group">';
-                                    echo '<h4>Ngày xuất phát</h4><input type="date" id ="ngay" name="date" class="form-control" value="'.$xe->date.'" >';
+                                    echo '<h4>Ngày xuất phát</h4><input type="date" id ="ngay" name="date" class="form-control" value="'.$xe->ngay.'" >';
                                     echo '</div>';
 
                                     echo '<div class="form-group">';
-                                    echo '<h4>Giờ xuất phát</h4><input type="time" id ="gio" name="time" class="form-control" value="'.$xe->time.'" >';
+                                    echo '<h4>Giờ xuất phát</h4><input type="time" id ="gio" name="time" class="form-control" value="'.$xe->gio.'" >';
                                     echo '</div>';
 
                                     echo '<div class="form-group">';
@@ -183,7 +119,7 @@
 
                 let val = e.target.innerHTML;
                 let value = parseInt(val, 10);
-                // document.getElementById("seatSelected").value += val+" ";
+                
                 if (document.getElementById("seatSelected").value != value) {
                     document.getElementById("seatSelected").value = value;
                 }

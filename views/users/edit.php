@@ -1,4 +1,9 @@
-<?php $title = 'Chỉnh sửa: '.$user->ten_khach; ?>
+<?php $title = 'Chỉnh sửa: '.$user->ten_khach; 
+$previous = "javascript:history.go(-1)";
+if(isset($_SERVER['HTTP_REFERER'])) {
+    $previous = $_SERVER['HTTP_REFERER'];
+}
+?>
 <header class="masthead" style="background-image: url('assets/img/home-bg2.jpg')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -20,6 +25,7 @@
             <?php } elseif (isset($_GET['notify']) && $_GET['notify'] == 'success') { ?>
               <p style="color:green;">Chỉnh sửa thành công</p>
             <?php }?>
+
             <form action="index.php?controller=users&action=update&id=<?php echo $_SESSION['User_id']; ?>" method="post">
               <div class="input-group flex-nowrap my-4">
                 <span class="input-group-text" id="addon-wrapping"><i class="far fa-user"></i></span>
@@ -34,9 +40,7 @@
                 <input type="text" class="form-control" id="userAddress" value='<?php echo $user->dia_chi; ?>' name="dia_chi" aria-label="Address" aria-describedby="addon-wrapping">
               </div>
               <div class="input-group flex-nowrap my-4">
-                <button type="submit" id="btnSingUp" class="form-control btn btn-primary">Sửa</button>
-                <!-- <button id="btnSingUp" class="form-control btn btn-info"><a href="javascript:history.go(-1)">Cancel</a></button> -->
-                <button id="btnSingUp" class="form-control btn btn-info"><a href="index.php?controller=pages&action=home">Cancel</a></button>
+                <button type="submit" id="btnSingUp" class="form-control btn btn-primary">Sửa</button>                
               </div>
             </form>
             <form action="index.php?controller=users&action=changePassWord&id=<?php echo $_SESSION['User_id']; ?>" method="post">
@@ -58,11 +62,9 @@
               </div>
               <div class="input-group flex-nowrap my-4">
                 <button type="submit" id="btnSingUp" class="form-control btn btn-primary password" disabled>Đổi mật khẩu</button>
-                <!-- <button id="btnSingUp" class="form-control btn btn-info"><a href="javascript:history.go(-1)">Cancel</a></button> -->
-                <button id="btnSingUp" class="form-control btn btn-info password" disabled><a href="index.php?controller=pages&action=home">Cancel</a></button>
-              </div>
             </form>
         </div>
+        <a href="./"><button class="form-control btn btn-info">Cancel</button></a>
     </div>
 </div>
 

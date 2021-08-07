@@ -18,12 +18,12 @@ $title="Liên hệ";
 <div class="container container-fluid px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
-            <h1>Nếu bạn cần đặt xe hỗ. Vui lòng liên hệ với nhân viên để được hỗ trợ:</h1>
+            <h1>Nếu bạn cần đặt xe hộ. Vui lòng liên hệ với nhân viên để được hỗ trợ:</h1>
             <h3>Số điện thoại hỗ trợ: 0123456789</h3>
-            <h3>Dường dây nóng: 0987654321</h3>
+            <h3>Đường dây nóng: 0987654321</h3>
             <hr class="my-4" />
             <!-- Pager-->
-            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="index.php?controller=cars&action=index">Xem tuyến xe →</a></div>
+            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="index.php?controller=cars&action=index">Xem lịch trình hiện có →</a></div>
         </div>
     </div>
 </div>

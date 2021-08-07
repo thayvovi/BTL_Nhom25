@@ -22,7 +22,7 @@ $title="Trang chủ";
             <p>ngoài ra, tại đây bạn có thể tìm được chuyến xe di chuyển đến các tỉnh thành một cách dễ dàng. Vậy còn chần chừ gì mà không tìm ngay cho mình một chuyến xe với một giá cả phải chăng với sự tận tình chu đáo của các nhà xe</p>
             <hr class="my-4" />
             <!-- Pager-->
-            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="index.php?controller=cars&action=index">Xem tuyến xe →</a></div>
+            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="index.php?controller=cars&action=index">Xem lịch trình hiện có →</a></div>
         </div>
     </div>
 </div>

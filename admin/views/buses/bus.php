@@ -8,7 +8,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"><a href="#"><button class="btn btn-primary my-2"><i class="fas fa-plus mr-2"></i>Thêm xe chạy</button></a></h6>
+            <h6 class="m-0 font-weight-bold text-primary"><a href="index.php?controller=bus&action=create"><button class="btn btn-primary my-2"><i class="fas fa-plus mr-2"></i>Thêm xe chạy</button></a></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -19,34 +19,92 @@
                             <th>Tuyến chạy</th>
                             <th>Ngày chạy</th>
                             <th>Giờ chạy</th>
+                            <th>Số xe chạy</th>
                             <th>Ghế trên xe</th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($bus as $bus) {
+                        <?php foreach ($buses as $bus) {
                             foreach ($routes as $route) {
                                 if ($bus->idRoute == $route->id) {
                                     echo '<tr>';
                                         echo '<td>'.$bus->id.'</td>';
                                         echo '<td>'.$route->routeName.'</td>';
-                                        echo '<td>'.$bus->date.'</td>';
-                                        echo '<td>'.$bus->time.'</td>';
-                                        echo '<td>'.$bus->totalSeat.'</td>';
+                                        echo '<td>'.$bus->ngay.'</td>';
+                                        echo '<td>'.$bus->gio.'</td>';
+                                        echo '<td>'.$route->totalBus.'</td>';
+                                        echo '<td><a href="#" data-toggle="modal" data-target="#seat">'.$bus->totalSeat.'</a></td>';
                                         echo '<td>';
-                                            echo '<a class="mr-2" href="#"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>';
-                                            echo '<a href="#"><button class="btn btn-danger"><i class="fas fa-trash"></i></button></a>';
+                                            echo '<a class="mr-2" href="index.php?controller=bus&action=edit&id='.$bus->id.'"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>';
+                                            echo '<button class="btn btn-danger" data-toggle="modal" data-target="#deleteBus"><i class="fas fa-trash"></i></button>';
                                         echo '</td>';
                                     echo '</tr>';
+                                
                                 }
                             }
                         } ?>
+                        <div class="modal fade" id="seat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Tổng số ghế: </h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="wrapper">
+                                                <div class="row">
+                                                    <?php for ($i = 1; $i <= $bus->totalSeat ; $i++) {
+                                                        if ($i <= 2) {
+                                                            echo '<div class="seat driver"></div>';
+                                                        }
+                                                        else{
+                                                            echo '<div class="seat" id="seat">'.$i.'</div>';
+                                                        }
+                                                    } ?>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a class="btn btn-primary" href="login.html">Đặt vé hộ</a>
+                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <!-- Phần xóa -->
+                        <div class="modal modal-danger fade" id="deleteBus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Cảnh báo: </h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                     <div class="modal-body">
+                                        <h1 class="h3 mb-2 text-gray-900">Bạn đang xóa: <br></h1>
+                                            Tuyến Xe: <?php  echo $route->routeName; ?><br>
+                                            Chạy ngày: <?php echo $bus->ngay; ?>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-danger" href="index.php?controller=bus&action=delete&id=<?php echo $bus->id;?>">Xóa</a>
+                                        <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
 </div>
+
 <!-- /.container-fluid -->
 <!-- End of Main Content -->

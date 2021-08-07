@@ -20,7 +20,7 @@ class UsersController extends BaseController
 
             $getAccount = User::checkUser($_POST['sdt']);
             if ($sdt == $getAccount->sdt ) {
-                $_SESSION['User_sdt'] = $sdt;
+                $_SESSION['User_sdt'] = $getAccount->sdt;
                 if($mat_khau == $getAccount->mat_khau ){
                     $_SESSION['User_id'] = $getAccount->id;
                     $_SESSION['User_name'] = $getAccount->ten_khach;

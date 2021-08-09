@@ -2,16 +2,16 @@
 class Bus{
 	public $id;
 	public $idRoute; 
-	public $ngay; 
-	public $gio;
+	public $date; 
+	public $time;
 	public $totalSeat;
 	
-	public function __construct($id, $idRoute, $ngay, $gio, $totalSeat)
+	public function __construct($id, $idRoute, $date, $time, $totalSeat)
 	{
 		$this->id = $id;
 		$this->idRoute = $idRoute;
-		$this->ngay = $ngay;
-		$this->gio = $gio;
+		$this->date = $date;
+		$this->time = $time;
 		$this->totalSeat = $totalSeat;
 	}
 
@@ -21,7 +21,7 @@ class Bus{
 		$query = $db->query('SELECT * FROM xe');
 
 		foreach ($query->fetchAll(PDO::FETCH_ASSOC) as $item) {
-			$list[] = new Bus($item['id'],$item['idRoute'],$item['ngay'],$item['gio'],$item['totalSeat']);
+			$list[] = new Bus($item['id'],$item['idRoute'],$item['date'],$item['time'],$item['totalSeat']);
 		}
 
 		return $list;
@@ -36,7 +36,7 @@ class Bus{
 
 		$item = $query->fetch();//lấy dữ liệu của id
 		if (isset($item['id'])) {
-			return new Bus($item['id'],$item['idBus'],$item['idRoute'],$item['ngay'],$item['gio'],$item['totalSeat']);//tồn tại id trả về thông tin của id đó
+			return new Bus($item['id'],$item['idBus'],$item['idRoute'],$item['date'],$item['time'],$item['totalSeat']);//tồn tại id trả về thông tin của id đó
 		}
 		return null;
 	}

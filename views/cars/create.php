@@ -39,11 +39,11 @@
                                     echo '</div>';
 
                                     echo '<div class="form-group">';
-                                    echo '<h4>Ngày xuất phát</h4><input type="date" id ="ngay" name="date" class="form-control" value="'.$xe->ngay.'" >';
+                                    echo '<h4>Ngày xuất phát</h4><input type="date" id ="ngay" name="date" class="form-control" value="'.$xe->date.'" >';
                                     echo '</div>';
 
                                     echo '<div class="form-group">';
-                                    echo '<h4>Giờ xuất phát</h4><input type="time" id ="gio" name="time" class="form-control" value="'.$xe->gio.'" >';
+                                    echo '<h4>Giờ xuất phát</h4><input type="time" id ="gio" name="time" class="form-control" value="'.$xe->time.'" >';
                                     echo '</div>';
 
                                     echo '<div class="form-group">';

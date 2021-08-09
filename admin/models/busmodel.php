@@ -3,16 +3,16 @@ class BusModel
 {
     public $id;
 	public $idRoute; 
-	public $ngay; 
-	public $gio;
+	public $date; 
+	public $time;
 	public $totalSeat;
 	
-	public function __construct($id, $idRoute, $ngay, $gio, $totalSeat)
+	public function __construct($id, $idRoute, $date, $time, $totalSeat)
 	{
 		$this->id = $id;
 		$this->idRoute = $idRoute;
-		$this->ngay = $ngay;
-		$this->gio = $gio;
+		$this->date = $date;
+		$this->time = $time;
 		$this->totalSeat = $totalSeat;
 	}
 
@@ -25,28 +25,28 @@ class BusModel
 		$query = $db->query('SELECT * FROM xe');
 
 		foreach ($query->fetchAll(PDO::FETCH_ASSOC) as $item) {
-			$list[] = new BusModel($item['id'],$item['idRoute'],$item['ngay'],$item['gio'],$item['totalSeat']);
+			$list[] = new BusModel($item['id'],$item['idRoute'],$item['date'],$item['time'],$item['totalSeat']);
 		}
 
 		return $list;
 		$db= DB::disconnect();
 	}
 
-	public static function insert($idRoute, $ngay, $gio, $totalSeat)
+	public static function insert($idRoute, $date, $time, $totalSeat)
 	{
 		$db = DB::getInstance();
 
-		$query = $db->prepare('INSERT INTO xe SET idRoute=:idRoute,ngay=:ngay,gio=:gio,totalSeat=:totalSeat');
-		$query->execute(array("idRoute"=>$idRoute,"ngay"=>$ngay,"gio"=>$gio,"totalSeat"=>$totalSeat));
+		$query = $db->prepare('INSERT INTO xe SET idRoute=:idRoute,date=:date,time=:time,totalSeat=:totalSeat');
+		$query->execute(array("idRoute"=>$idRoute,"date"=>$date,"time"=>$time,"totalSeat"=>$totalSeat));
 		$db= DB::disconnect();
 	}
 
-	public static function update($id,$idRoute, $ngay, $gio, $totalSeat)
+	public static function update($id,$idRoute, $date, $time, $totalSeat)
 	{
 		$db = DB::getInstance();
 
-		$query = $db->prepare('UPDATE xe SET idRoute=:idRoute,ngay=:ngay,gio=:gio,totalSeat=:totalSeat WHERE id=:id');
-		$query->execute(array("id" => $id,"idRoute"=>$idRoute,"ngay"=>$ngay,"gio"=>$gio,"totalSeat"=>$totalSeat));
+		$query = $db->prepare('UPDATE xe SET idRoute=:idRoute,date=:date,time=:time,totalSeat=:totalSeat WHERE id=:id');
+		$query->execute(array("id" => $id,"idRoute"=>$idRoute,"date"=>$date,"time"=>$time,"totalSeat"=>$totalSeat));
 		$db= DB::disconnect();
 	}
 

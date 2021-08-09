@@ -16,7 +16,7 @@
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th>Tên tuyến</th>
+                            <th>Tuyến xe</th>
                             <th>Số xe chạy</th>
                             <th>Hành động</th>
                         </tr>

@@ -136,6 +136,7 @@ class BusController extends BaseController
                                     echo '<script>alert("Sửa thành công.");';
                                     echo 'location.href="index.php?controller=bus&action=edit&id='.$id.'";</script>';
                                 }
+                                echo header("location: index.php?controller=bus&action=home");
                             }
                         }
                     }
@@ -156,14 +157,18 @@ class BusController extends BaseController
 
     public function delete()
     {
-        if (isset($_GET['id'])) {
-            $id= $_GET['id'];
-            // BusModel::delete($id)
-            // header("location: index.php?controller=bus&action=home");
-            echo $id;
+        if(!empty($_SESSION['User_id'])){
+            if (!empty($_SESSION['User_level']) && $_SESSION['User_level'] == 1){
+                if (isset($_GET['id'])){
+                    $id= $_GET['id'];
+                    BusModel::delete($id);
+                    echo '<script>alert("Xoá thành công!!!");</script>';
+                    echo header("location: index.php?controller=bus&action=home");
+                }
+            }
         }
         else{
-            echo '<script>alert("Bạn chưa chọn tuyến xe để xóa");';
+            echo '<script>alert("Something went wrong!!!");';
             echo 'location.href="index.php?controller=bus&action=home';
         }
     }

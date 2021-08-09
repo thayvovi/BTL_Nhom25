@@ -15,7 +15,7 @@ if(isset($_SERVER['HTTP_REFERER'])) {
           <?php foreach ($routes as $route): ?>
             <?php if ($bus->idRoute == $route->id): ?>
               <h3>Tuyến xe: <?php echo $route->routeName; ?></h3>
-              <h3>Ngày chạy: <?php echo $bus->ngay; ?></h3>
+              <h3>Ngày chạy: <?php echo $bus->date; ?></h3>
             <?php endif ?>
           <?php endforeach ?>
         <?php endif ?>

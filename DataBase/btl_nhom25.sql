@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Cấu trúc bảng cho bảng `bus_route`
 --
-
+use btl_nhom25
 CREATE TABLE `bus_route` (
   `id` int(11) NOT NULL,
   `routeName` varchar(255) NOT NULL,
@@ -106,6 +106,7 @@ INSERT INTO `users` (`id`, `ten_khach`, `mat_khau`, `sdt`, `dia_chi`, `level`) V
 (6, 'Nguyễn Thanh Tùng', '202cb962ac59075b964b07152d234b70', 123, 'a', 1),
 (7, 'Nguyễn Thanh Tùng', '202cb962ac59075b964b07152d234b70', 337882657, '1312', 0);
 
+
 -- --------------------------------------------------------
 
 --
@@ -115,8 +116,8 @@ INSERT INTO `users` (`id`, `ten_khach`, `mat_khau`, `sdt`, `dia_chi`, `level`) V
 CREATE TABLE `xe` (
   `id` int(11) NOT NULL,
   `idRoute` int(11) NOT NULL,
-  `ngay` date NOT NULL,
-  `gio` time NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
   `totalSeat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -124,7 +125,7 @@ CREATE TABLE `xe` (
 -- Đang đổ dữ liệu cho bảng `xe`
 --
 
-INSERT INTO `xe` (`id`, `idRoute`, `ngay`, `gio`, `totalSeat`) VALUES
+INSERT INTO `xe` (`id`, `idRoute`, `date`, `time`, `totalSeat`) VALUES
 (1, 1, '2021-08-06', '07:00:00', 30),
 (2, 4, '2021-07-31', '07:00:00', 50);
 
@@ -169,8 +170,8 @@ ALTER TABLE `xe`
 --
 -- AUTO_INCREMENT cho bảng `bus_route`
 --
-ALTER TABLE `bus_route`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `bus_route` DROP `id`;
+ALTER TABLE `bus_route` ADD  `id` INT( 11 ) NOT NULL AUTO_INCREMENT FIRST ,ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT cho bảng `seat_details`
@@ -193,8 +194,8 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT cho bảng `xe`
 --
-ALTER TABLE `xe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+ALTER TABLE `xe` DROP `id`;
+ALTER TABLE `xe` ADD  `id` INT(11) NOT NULL AUTO_INCREMENT FIRST ,ADD PRIMARY KEY (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

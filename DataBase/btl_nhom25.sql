@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 06, 2021 lúc 01:11 PM
--- Phiên bản máy phục vụ: 10.4.18-MariaDB
--- Phiên bản PHP: 8.0.3
+-- Thời gian đã tạo: Th8 09, 2021 lúc 05:52 PM
+-- Phiên bản máy phục vụ: 10.4.19-MariaDB
+-- Phiên bản PHP: 8.0.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Cấu trúc bảng cho bảng `bus_route`
 --
-use btl_nhom25
+
 CREATE TABLE `bus_route` (
   `id` int(11) NOT NULL,
   `routeName` varchar(255) NOT NULL,
@@ -40,8 +40,8 @@ CREATE TABLE `bus_route` (
 INSERT INTO `bus_route` (`id`, `routeName`, `totalBus`) VALUES
 (1, 'Nam Định <-> Hà Nội', 5),
 (2, 'Thái Bình đến Nam Định', 5),
-(4, 'Hải Phòng đến Hưng Yên', 2),
-(5, 'TP.HCM <-> Hà Nội', 2);
+(3, 'Hải Phòng đến Hưng Yên', 2),
+(4, 'TP.HCM <-> Hà Nội', 2);
 
 -- --------------------------------------------------------
 
@@ -104,8 +104,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `ten_khach`, `mat_khau`, `sdt`, `dia_chi`, `level`) VALUES
 (6, 'Nguyễn Thanh Tùng', '202cb962ac59075b964b07152d234b70', 123, 'a', 1),
-(7, 'Nguyễn Thanh Tùng', '202cb962ac59075b964b07152d234b70', 337882657, '1312', 0);
-
+(7, 'Nguyễn Thanh Tùng', '202cb962ac59075b964b07152d234b70', 337882657, '1312', 0),
+(8, 'Vyng', 'b59c67bf196a4758191e42f76670ceba', 352697847, 'Ha Nam', 1);
 
 -- --------------------------------------------------------
 
@@ -126,8 +126,7 @@ CREATE TABLE `xe` (
 --
 
 INSERT INTO `xe` (`id`, `idRoute`, `date`, `time`, `totalSeat`) VALUES
-(1, 1, '2021-08-06', '07:00:00', 30),
-(2, 4, '2021-07-31', '07:00:00', 50);
+(1, 1, '2021-08-06', '07:00:00', 30);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -170,8 +169,8 @@ ALTER TABLE `xe`
 --
 -- AUTO_INCREMENT cho bảng `bus_route`
 --
-ALTER TABLE `bus_route` DROP `id`;
-ALTER TABLE `bus_route` ADD  `id` INT( 11 ) NOT NULL AUTO_INCREMENT FIRST ,ADD PRIMARY KEY (`id`);
+ALTER TABLE `bus_route`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `seat_details`
@@ -189,13 +188,13 @@ ALTER TABLE `ticket_details`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `xe`
 --
-ALTER TABLE `xe` DROP `id`;
-ALTER TABLE `xe` ADD  `id` INT(11) NOT NULL AUTO_INCREMENT FIRST ,ADD PRIMARY KEY (`id`);
+ALTER TABLE `xe`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

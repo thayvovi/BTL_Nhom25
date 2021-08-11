@@ -1,4 +1,4 @@
-<?php $title = "Quản lý tuyến xe";?>
+<?php $title = 'Quản lý tuyến xe'; ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -8,7 +8,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"><a href="#"><button class="btn btn-primary my-2"><i class="fas fa-plus mr-2"></i>Thêm tuyến xe</button></a></h6>
+            <h6 class="m-0 font-weight-bold text-primary"><a href="index.php?controller=route&action=create"><button class="btn btn-primary my-2"><i class="fas fa-plus mr-2"></i>Thêm tuyến xe</button></a></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -23,16 +23,16 @@
                     </thead>
                     <tbody>
                         <?php foreach ($routes as $route) {
-                            echo '<tr>';
-                                echo '<td>'.$route->id.'</td>';
-                                echo '<td>'.$route->routeName.'</td>';
-                                echo '<td>'.$route->totalBus.'</td>';
-                                echo '<td>';
-                                    echo '<a class="mr-2" href="#"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>';
-                                    echo '<a href="#"><button class="btn btn-danger"><i class="fas fa-trash"></i></button></a>';
-                                echo '</td>';
-                            echo '</tr>';
-                        } ?>
+    echo '<tr>';
+    echo '<td>'.$route->id.'</td>';
+    echo '<td>'.$route->routeName.'</td>';
+    echo '<td>'.$route->totalBus.'</td>';
+    echo '<td>';
+    echo '<a class="mr-2" href="#"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>';
+    echo '<button class="btn btn-danger" onclick = "return Delete('.$route->id.')"><i class="fas fa-trash"></i></button>';
+    echo '</td>';
+    echo '</tr>';
+} ?>
                     </tbody>
                 </table>
             </div>
@@ -42,3 +42,29 @@
 </div>
 <!-- /.container-fluid -->
 <!-- End of Main Content -->
+<script>
+    function Delete(id){
+        $confirm = confirm("Bạn có muốn xoá hay không?");
+
+        if($confirm == true){
+            $.ajax({
+                type: "POST",
+                url : "index.php?controller=route&action=delete",
+                data : {
+                    idRoute : id,
+                },
+                success:function(data){
+                    alert("Xoá thành công");
+                    location.reload();
+                }, error:function(){
+                    alert("Có lỗi xảy ra");
+                }
+            });
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+</script>

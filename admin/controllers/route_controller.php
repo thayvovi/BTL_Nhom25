@@ -109,7 +109,7 @@ class RouteController extends BaseController
                     $routeName = $_POST['routeName'];
                     if (isset($_POST['totalBus'])) {
                         $totalBus = $_POST['totalBus'];
-                        $them = BusModel::update($routeName, $totalBus);
+                        $them = RouteModel::update($id, $routeName, $totalBus);
                         echo '<script>alert("Sửa thành công.");';
                         echo 'location.href="index.php?controller=route&action=edit&id='.$id.'";</script>';
                     }

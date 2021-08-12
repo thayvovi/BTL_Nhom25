@@ -28,7 +28,7 @@
     echo '<td>'.$route->routeName.'</td>';
     echo '<td>'.$route->totalBus.'</td>';
     echo '<td>';
-    echo '<a class="mr-2" href="#"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>';
+    echo '<a class="mr-2" href="index.php?controller=route&action=edit&id='.$route->id.'"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>';
     echo '<button class="btn btn-danger" onclick = "return Delete('.$route->id.')"><i class="fas fa-trash"></i></button>';
     echo '</td>';
     echo '</tr>';

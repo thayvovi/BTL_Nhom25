@@ -28,6 +28,24 @@ class RouteModel
         return $list;
     }
 
+    public static function insert($routeName, $totalBus)
+    {
+        $db = DB::getInstance();
+
+        $query = $db->prepare('INSERT INTO bus_route SET routeName=:routeName,totalBus=:totalBus');
+        $query->execute(['routeName' => $routeName, 'totalBus' => $totalBus]);
+        $db = DB::disconnect();
+    }
+
+    public static function update($id, $routeName, $totalBus)
+    {
+        $db = DB::getInstance();
+
+        $query = $db->prepare('UPDATE bus_route SET routeName=:routeName,totalBus=:totalBus WHERE id=:id');
+        $query->execute(['id' => $id, 'routeName' => $routeName, 'totalBus' => $totalBus]);
+        $db = DB::disconnect();
+    }
+
     public static function deleteRoute($id)
     {
         $db = DB::getInstance();

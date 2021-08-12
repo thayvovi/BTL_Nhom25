@@ -1,4 +1,10 @@
-<?php $title = 'Thêm tuyến xe'; ?>
+<?php $title = 'Thêm tuyến xe'; 
+$previous = "javascript:history.go(-1)";
+if(isset($_SERVER['HTTP_REFERER'])) {
+    $previous = $_SERVER['HTTP_REFERER'];
+}
+?>
+
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -14,7 +20,7 @@
               <div class="col-md-6">
                 <label for="route" class="form-label">Tên tuyến Xe</label>
                 
-                <input type="text" name="routeName" class="form-control" placeholder="Nhập tên tuyến xe">
+                <input type="text" name="route" class="form-control" placeholder="Nhập tên tuyến xe">
               </div>
               <div class="mt-2 col-md-6">
                 <label class="form-label">Số xe chạy</label>

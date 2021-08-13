@@ -31,3 +31,5 @@
 
 </div>
 
+<!-- /.container-fluid -->
+<!-- End of Main Content -->

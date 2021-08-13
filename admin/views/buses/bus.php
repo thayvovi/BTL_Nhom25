@@ -21,7 +21,6 @@
                             <th>Tuyến xe</th>
                             <th>Ngày chạy</th>
                             <th>Giờ chạy</th>
-                            <th>Số xe chạy</th>
                             <th>Ghế trên xe</th>
                             <th>Hành động</th>
                         </tr>
@@ -35,7 +34,6 @@
             echo '<td>'.$route->routeName.'</td>';
             echo '<td>'.$bus->date.'</td>';
             echo '<td>'.$bus->time.'</td>';
-            echo '<td>'.$route->totalBus.'</td>';
             echo '<td><a href="#" data-toggle="modal" data-target="#seat">'.$bus->totalSeat.'</a></td>';
             echo '<td>';
             echo '<a class="mr-2" href="index.php?controller=bus&action=edit&id='.$bus->id.'"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>';

@@ -2,7 +2,7 @@
 
 $controllers = [
     'pages' => ['home', 'error'],
-    'route' => ['home', 'delete', 'create', 'store', 'edit'],
+    'route' => ['home', 'delete', 'create', 'store', 'edit', 'update_route'],
     'bus' => ['home', 'create', 'store', 'edit', 'update_bus', 'delete'],
 ];
 

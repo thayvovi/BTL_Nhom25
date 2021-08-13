@@ -34,7 +34,12 @@ class RouteController extends BaseController
     {
         if (!empty($_SESSION['User_id'])) {
             if (!empty($_SESSION['User_level']) && $_SESSION['User_level'] == 1) {
-                $this->render('create');
+                $route = RouteModel::selected();
+                $data = [
+                    'routes' => $route,
+                ];
+
+                $this->render('create', $data);
             } else {
                 header('location: ../');
             }

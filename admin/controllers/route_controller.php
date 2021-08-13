@@ -115,17 +115,29 @@ class RouteController extends BaseController
     {
         if (!empty($_SESSION['User_id'])) {
             if (!empty($_SESSION['User_level']) && $_SESSION['User_level'] == 1) {
-                if (isset($_POST['id'])) {
+                if (isset($_POST['id']) && isset($_POST['routeName']) && isset($_POST['totalBus'])) {
                     $id = $_POST['id'];
-                    $routeName = '';
-                    $totalBus = '';
+                    $routeName = $_POST['routeName'];
+                    $totalbus = $_POST['totalBus'];
                     if ($id == '') {
                         echo '<script>alert("không có giá trị này");
                             location.href = "index.php?controller=route&action=home";
                         </script>';
                     } else {
-                        RouteModel::update($id, $routeName, $totalBus);
+                        if ($routeName === '' || $totalbus === '') {
+                            echo '<script>alert("không có được để trống tên tuyến xe hoặc số xe chạy");
+                                location.href = "index.php?controller=route&action=home";
+                            </script>';
+                        } else {
+                            RouteModel::update($id, $routeName, $totalbus);
+                            //header('location: index.php?controller=route&action=home');
+                            //echo 'Trang update';
+                        }
                     }
+                } else {
+                    echo '<script>alert("không có giá trị sửa này");
+                            window.history.back();
+                    </script>';
                 }
             } else {
                 header('location: ../');
@@ -135,6 +147,8 @@ class RouteController extends BaseController
             echo "location.href= '../index.php?controller=users&action=index';";
             echo '</script>';
         }
+        // $id = $_POST['id'];
+        // print_r($id);
     }
 
     public function delete()

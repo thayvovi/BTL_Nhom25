@@ -42,6 +42,10 @@
     <script src="../assets/admin/js/demo/chart-pie-demo.js"></script>
     <script src="../assets/admin/js/demo/datatables-demo.js"></script>
 
+    <!-- customers -->
+    <script src="../assets/admin/js/application.js"></script>
+
+
 </body>
 
 </html>

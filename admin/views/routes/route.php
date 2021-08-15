@@ -42,29 +42,3 @@
 </div>
 <!-- /.container-fluid -->
 <!-- End of Main Content -->
-<script>
-    function Delete(id){
-        $confirm = confirm("Bạn có muốn xoá hay không?");
-
-        if($confirm == true){
-            $.ajax({
-                type: "POST",
-                url : "index.php?controller=route&action=delete",
-                data : {
-                    idRoute : id,
-                },
-                success:function(data){
-                    alert("Xoá thành công");
-                    location.reload();
-                }, error:function(){
-                    alert("Có lỗi xảy ra");
-                }
-            });
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-</script>

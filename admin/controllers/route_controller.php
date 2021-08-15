@@ -54,8 +54,8 @@ class RouteController extends BaseController
     {
         if (!empty($_SESSION['User_id'])) {
             if (!empty($_SESSION['User_level']) && $_SESSION['User_level'] == 1) {
-                if (isset($_POST['routeName']) && isset($_POST['bus'])) {
-                    $routeName = trim($_POST['routeName']);
+                if (isset($_POST['route']) && isset($_POST['bus'])) {
+                    $routeName = trim($_POST['route']);
                     $bus = trim($_POST['bus']);
 
                     if ($routeName == '' || $bus == '') {

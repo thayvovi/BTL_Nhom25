@@ -1,24 +1,23 @@
-<?php  
-class BaseController{
-	protected $folder;
+<?php
 
-	public function render($file,$data=[])
-	{
-		$view_file = '../admin/views/'.$this->folder.'/'.$file.'.php';
+class BaseController
+{
+    protected $folder;
 
-		if(file_exists($view_file)){
-			extract($data);
+    public function render($file, $data = [])
+    {
+        $view_file = '../admin/views/'.$this->folder.'/'.$file.'.php';
 
-			ob_start();
-			require_once($view_file);
-			$content = ob_get_clean();
+        if (file_exists($view_file)) {
+            extract($data);
 
-			require_once('../admin/views/layouts/application.php');
-		}
-		else{
-			header('Location: index.php?controller=pages&action=error');
-		}
+            ob_start();
+            require_once $view_file;
+            $content = ob_get_clean();
 
-	}
+            require_once '../admin/views/layouts/application.php';
+        } else {
+            header('Location: ./index.php?controller=pages&action=error');
+        }
+    }
 }
-?>

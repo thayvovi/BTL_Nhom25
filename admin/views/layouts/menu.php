@@ -45,9 +45,9 @@
 
     <!-- Nav Item - Người dùng -->
     <li class="nav-item p-l-0">
-        <a class="nav-link" href="./">
+        <a class="nav-link" href="index.php?controller=users&action=index">
             <i class="fas fa-user-alt"></i>
-            <span>Người dùng</span>
+            <span>Nhân viên</span>
         </a>
     </li>
 

@@ -54,15 +54,15 @@ class RouteController extends BaseController
     {
         if (!empty($_SESSION['User_id'])) {
             if (!empty($_SESSION['User_level']) && $_SESSION['User_level'] == 1) {
-                if (isset($_POST['routeName']) && isset($_POST['bus'])) {
-                    $routeName = trim($_POST['routeName']);
+                if (isset($_POST['route']) && isset($_POST['bus'])) {
+                    $route = trim($_POST['route']);
                     $bus = trim($_POST['bus']);
 
-                    if ($routeName == '' || $bus == '') {
+                    if ($route == '' || $bus == '') {
                         echo '<script>alert("Vui lòng nhập đầy đủ thông tin trước khi thêm")</script>';
                         echo header('location: index.php?controller=route&action=create');
                     } else {
-                        RouteModel::insert($routeName, $bus);
+                        RouteModel::insert($route, $bus);
 
                         echo '<script>alert("Thêm thành công");';
                         echo "location.href = 'index.php?controller=route&action=home';";

@@ -53,3 +53,25 @@ function Delete(id) {
         return false;
     }
 }
+
+function deleteAjax(id) {
+    $confirm = confirm("Bạn có muốn xoá hay không?");
+    if ($confirm == true) {
+        $.ajax({
+            type: "POST",
+            url: "index.php?controller=bus&action=delete",
+            data: {
+                id: id,
+            },
+            success: function(data) {
+                alert("Xoá thành công");
+                location.reload();
+            },
+            error: function() {
+                alert("Đã có lỗi xảy ra");
+            }
+        });
+    } else {
+        return false;
+    }
+}

@@ -151,9 +151,13 @@ class BusController extends BaseController
             if (!empty($_SESSION['User_level']) && $_SESSION['User_level'] == 1) {
                 if (isset($_POST['id'])) {
                     $id = $_POST['id'];
-                    BusModel::delete($id);
-                    // echo '<script>alert("Xoá thành công!!!");</script>';
-                    // echo header('location: index.php?controller=bus&action=home');
+                    if ($id == '') {
+                        echo '<script>alert("Không tồn tại bus");
+                            location.reload();
+                        </script>';
+                    } else {
+                        BusModel::delete($id);
+                    }
                 }
             }
         } else {

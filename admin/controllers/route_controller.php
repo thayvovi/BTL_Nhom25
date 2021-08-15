@@ -130,8 +130,6 @@ class RouteController extends BaseController
                             </script>';
                         } else {
                             RouteModel::update($id, $routeName, $totalbus);
-                            //header('location: index.php?controller=route&action=home');
-                            //echo 'Trang update';
                         }
                     }
                 } else {
@@ -147,8 +145,6 @@ class RouteController extends BaseController
             echo "location.href= '../index.php?controller=users&action=index';";
             echo '</script>';
         }
-        // $id = $_POST['id'];
-        // print_r($id);
     }
 
     public function delete()

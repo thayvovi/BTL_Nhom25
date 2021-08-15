@@ -19,8 +19,8 @@
                         <tr>
                             <th>STT</th>
                             <th>Tuyến xe</th>
-                            <th>Ngày chạy</th>
-                            <th>Giờ chạy</th>
+                            <th>Ngày chạy(YYYY-MM-DD)</th>
+                            <th>Giờ chạy(HH:MM:SS)</th>
                             <th>Ghế trên xe</th>
                             <th>Hành động</th>
                         </tr>
@@ -85,28 +85,3 @@
 
 <!-- /.container-fluid -->
 <!-- End of Main Content -->
-
-<script>
-    function deleteAjax(id){
-        $confirm = confirm("Bạn có muốn xoá hay không?");
-        if($confirm == true){
-            $.ajax({
-                type : "POST",
-                url  : "index.php?controller=bus&action=delete",
-                data : {
-                    id : id,
-                },
-                success : function(data){
-                    alert("Xoá thành công");
-                    location.reload();
-                }, error:function(){
-                    alert("Đã có lỗi xảy ra");
-                }
-            });
-        }
-        else{
-            return false;
-        }
-    }
-
-</script>

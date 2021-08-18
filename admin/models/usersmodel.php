@@ -38,12 +38,12 @@ class User
         }
     }
 
-    public static function insert($ten_khach, $mat_khau, $sdt, $dia_chi, $level)
+    public static function insert($ten_khach, $mat_khau, $sdt, $dia_chi)
     {
         try {
             $db = DB::getInstance();
-            $query = $db->prepare('INSERT INTO users SET ten_khach =:ten_khach, mat_khau=:mat_khau, sdt=:sdt, dia_chi=:dia_chi, level=:level');
-            $query->execute(['ten_khach' => $ten_khach, 'mat_khau' => $mat_khau, 'sdt' => $sdt, 'dia_chi' => $dia_chi, 'level' => $level]);
+            $query = $db->prepare('INSERT INTO users SET ten_khach =:ten_khach, mat_khau=:mat_khau, sdt=:sdt, dia_chi=:dia_chi, level = 1');
+            $query->execute(['ten_khach' => $ten_khach, 'mat_khau' => $mat_khau, 'sdt' => $sdt, 'dia_chi' => $dia_chi]);
         } catch (PDOException  $ex) {
             echo $ex->getMessage();
         }
@@ -72,6 +72,19 @@ class User
             $sql = 'UPDATE users SET ten_khach= :ten_khach, sdt=:sdt,dia_chi=:dia_chi,level=:level WHERE id= :id';
             $query = $db->prepare($sql);
             $query->execute(['ten_khach' => $ten_khach, 'sdt' => $sdt, 'dia_chi' => $dia_chi, 'level' => $level, 'id' => $id]);
+        } catch (PDOException $ex) {
+            $ex->getMessage();
+        }
+    }
+
+    public static function delete($id)
+    {
+        try {
+            $db = DB::getInstance();
+
+            $sql = 'DELETE FROM users WHERE id = :id';
+            $query = $db->prepare($sql);
+            $query->execute(['id' => $id]);
         } catch (PDOException $ex) {
             $ex->getMessage();
         }

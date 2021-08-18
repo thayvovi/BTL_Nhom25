@@ -76,44 +76,51 @@ function deleteAjax(id) {
         return false;
     }
 }
+//show password
+function showPass() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
 
+// function showRePass() {
+//     var x = document.getElementById("re_password");
+//     if (x.type === "password") {
+//         x.type = "text";
+//     } else {
+//         x.type = "password";
+//     }
+// }
 
-//Cập nhật nhân viên
-// $("#editUserForm button").on('click', function() {
-//     $id = $("#editUserForm").attr('data-id');
-//     $ten_khach = $('#ten_khach').val();
-//     $sdt = $('#sdt').val();
-//     $dia_chi = $('#dia_chi').val();
-//     $("#level").change(function() {
-//         var level = $('#level option:selected').text();
-//         console.log(level);
-//         if ($ten_khach == '' || $dia_chi == '') {
-//             alert("Vui lòng không để trống tên nhân viên hoặc địa chỉ");
-//             location.reload();
-//         } else if (isNaN($sdt) || $sdt == '') {
-//             alert("Vui lòng không nhập ký tự khác ngoài số hoặc không để trống số điện thoại");
-//             location.reload();
-//         } else {
-//             $.ajax({
-//                 type: "POST",
-//                 url: "index.php?controller=users&action=update",
-//                 data: {
-//                     id: $id,
-//                     ten_khach: $ten_khach,
-//                     sdt: $sdt,
-//                     dia_chi: $dia_chi,
-//                     level: level
-//                 },
-//                 success: function($data) {
-//                     alert("Sửa thành công");
-//                     location.reload();
-//                 },
-//                 error: function() {
-//                     alert("Sửa không thành thành công");
-//                     location.reload();
-//                 }
-//             });
-//         }
-//     });
-
-// });
+//xoá nhân viên
+function deleteUser(id, idCurrent) {
+    $confirm = confirm("Bạn có chắc muốn xoá id này không?");
+    if ($confirm == true) {
+        if (id == '') {
+            alert('Không tồn tại nhân viên này!!!!');
+            location.reload();
+        } else if (id == idCurrent) {
+            alert('Không thể xoá tài khoản của chính mình!!!!');
+            location.reload();
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: 'index.php?controller=users&action=delete',
+                data: {
+                    id: id,
+                },
+                success: function(data) {
+                    alert("Xoá thành công");
+                    location.reload();
+                },
+                error: function() {
+                    alert("Không tồn tại nhân viên");
+                    location.reload();
+                }
+            });
+        }
+    }
+}

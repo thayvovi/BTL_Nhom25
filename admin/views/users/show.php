@@ -1,4 +1,4 @@
-<?php $title = 'Quản lý nhân viên'; ?>
+i<?php $title = 'Quản lý nhân viên'; ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -39,7 +39,7 @@
         echo '<td>';
 
         echo '<a class="mr-2" href="index.php?controller=users&action=edit&id='.$user->id.'"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>';
-        echo '<a class="mr-2" href="index.php?controller=users&action=edit&id='.$user->id.'"><button class="btn btn-danger"><i class="fas fa-trash"></i></button></a>';
+        echo '<a class="btn btn-danger" onclick = "return deleteUser('.$user->id.','.$_SESSION['User_id'].')"><i class="fas fa-trash"></i></a>';
         echo '</td>';
         echo '</tr>';
     }

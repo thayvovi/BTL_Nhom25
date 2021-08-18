@@ -124,9 +124,9 @@ class BusController extends BaseController
                             $gio = $_POST['gio'];
                             if (isset($_POST['seat'])) {
                                 $seat = $_POST['seat'];
-                                $them = BusModel::update($id, $route, $ngay, $gio, $seat);
-                                echo '<script>alert("Sửa thành công.");';
-                                echo 'location.href="index.php?controller=bus&action=edit&id='.$id.'";</script>';
+                                BusModel::update($id, $route, $ngay, $gio, $seat);
+                                echo '<script>alert("Sửa thành công.");
+                                location.href="index.php?controller=bus&action=edit&id='.$id.'";</script>';
                             }
                             echo header('location: index.php?controller=bus&action=home');
                         }

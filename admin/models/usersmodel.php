@@ -64,15 +64,14 @@ class User
         return null;
     }
 
-    public static function update($id, $ten_khach, $mat_khau, $sdt, $dia_chi)
+    public static function update($id, $ten_khach, $sdt, $dia_chi, $level)
     {
         try {
             $db = DB::getInstance();
 
-            $sql = 'UPDATE users SET ten_khach= :ten_khach,mat_khau=:mat_khau, sdt=:sdt,dia_chi=:dia_chi WHERE id= :id';
+            $sql = 'UPDATE users SET ten_khach= :ten_khach, sdt=:sdt,dia_chi=:dia_chi,level=:level WHERE id= :id';
             $query = $db->prepare($sql);
-            $query->execute(['ten_khach' => $ten_khach, 'mat_khau' => $mat_khau, 'sdt' => $sdt, 'dia_chi' => $dia_chi, 'id' => $id]);
-            $_SESSION['User_name'] = $ten_khach; //thực hiện lưu lại biến session
+            $query->execute(['ten_khach' => $ten_khach, 'sdt' => $sdt, 'dia_chi' => $dia_chi, 'level' => $level, 'id' => $id]);
         } catch (PDOException $ex) {
             $ex->getMessage();
         }

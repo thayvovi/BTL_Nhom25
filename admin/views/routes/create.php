@@ -20,7 +20,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
               <div class="col-md-6">
                 <label for="route" class="form-label">Tên tuyến Xe</label>
                 
-                <input type="text" name="route" class="form-control" placeholder="Nhập tên tuyến xe">
+                <input type="text" name="route" class="form-control" placeholder="Nhập tên tuyến xe" autofocus>
               </div>
               <div class="mt-2 col-md-6">
                 <label class="form-label">Số xe chạy</label>

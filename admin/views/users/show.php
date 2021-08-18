@@ -25,8 +25,8 @@
                     </thead>
                     <tbody>
                     <?php foreach ($users as $user) {
-    echo '<tr>';
     if ($user->level == 1) {
+        echo '<tr>';
         echo '<td>'.$user->id.'</td>';
         echo '<td>'.$user->ten_khach.'</td>';
         echo '<td> 0'.$user->sdt.'</td>';
@@ -37,11 +37,12 @@
         }
         echo '</td>';
         echo '<td>';
+
         echo '<a class="mr-2" href="index.php?controller=users&action=edit&id='.$user->id.'"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>';
         echo '<a class="mr-2" href="index.php?controller=users&action=edit&id='.$user->id.'"><button class="btn btn-danger"><i class="fas fa-trash"></i></button></a>';
         echo '</td>';
+        echo '</tr>';
     }
-    echo '</tr>';
 } ?>
                     </tbody>
                 </table>

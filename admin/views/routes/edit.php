@@ -16,7 +16,7 @@
               <div class="col-md-6">
                 <label for="route" class="form-label">Tên tuyến Xe</label>
                 
-                <input type="text" id="routeName" name="routeName" class="form-control" value="<?php echo $routes->routeName; ?>">
+                <input type="text" id="routeName" name="routeName" class="form-control" value="<?php echo $routes->routeName; ?>" autofocus>
               </div>
               <div class="mt-2 col-md-6">
                 <label class="form-label">Số xe chạy</label>

@@ -43,6 +43,14 @@
         </a>
     </li>
 
+    <!-- Nav Item - Vé xe -->
+    <li class="nav-item pl-lg-0">
+        <a class="nav-link" href="index.php?controller=tickets&action=index">
+            <i class="fas fa-clipboard-list"></i>
+            <span>Vé xe</span>
+        </a>
+    </li>
+
     <!-- Nav Item - Người dùng -->
     <li class="nav-item p-l-0">
         <a class="nav-link" href="index.php?controller=users&action=index">

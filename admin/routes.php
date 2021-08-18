@@ -5,6 +5,7 @@ $controllers = [
     'route' => ['home', 'delete', 'create', 'store', 'edit', 'update'],
     'bus' => ['home', 'create', 'store', 'edit', 'update_bus', 'delete'],
     'users' => ['index', 'create', 'store', 'edit', 'update', 'delete'],
+    'tickets' => ['index'],
 ];
 
 if (!array_key_exists($controller, $controllers) || !in_array($action, $controllers[$controller])) {

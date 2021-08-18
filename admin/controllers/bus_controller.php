@@ -115,25 +115,30 @@ class BusController extends BaseController
     {
         if (!empty($_SESSION['User_id'])) {
             if (!empty($_SESSION['User_level']) && $_SESSION['User_level'] == 1) {
-                $id = $_GET['id'];
-                if (isset($_POST['route'])) {
-                    $route = $_POST['route'];
-                    if (isset($_POST['ngay'])) {
-                        $ngay = $_POST['ngay'];
-                        if (isset($_POST['gio'])) {
-                            $gio = $_POST['gio'];
-                            if (isset($_POST['seat'])) {
-                                $seat = $_POST['seat'];
-                                BusModel::update($id, $route, $ngay, $gio, $seat);
-                                echo '<script>alert("Sửa thành công.");
-                                location.href="index.php?controller=bus&action=edit&id='.$id.'";</script>';
-                            }
-                            echo header('location: index.php?controller=bus&action=home');
-                        }
+                if (isset($_GET['id']) && isset($_POST['route']) && isset($_POST['ngay']) && isset($_POST['gio']) && isset($_POST['seat'])) {
+                    $id = trim(addslashes(htmlspecialchars($_GET['id'])));
+                    $route = trim(addslashes(htmlspecialchars($_POST['route'])));
+                    $ngay = trim(addslashes(htmlspecialchars($_POST['ngay'])));
+                    $gio = trim(addslashes(htmlspecialchars($_POST['gio'])));
+                    $seat = trim(addslashes(htmlspecialchars($_POST['seat'])));
+
+                    if ($id === '' || $route === '' || $ngay === '' || $gio === '' || $seat === '') {
+                        echo '<script>
+                            alert("Vui lòng kiểm tra lại thông tin sửa !!!");
+                            window.history.back();
+                        </script>';
+                    } else {
+                        BusModel::update($id, $route, $ngay, $gio, $seat);
+                        echo '<script>
+                            alert("Sửa thành công !!!");
+                            location.href = "index.php?controller=bus&action=edit&id='.$id.'";
+                        </script>';
                     }
                 } else {
-                    echo '<script>alert("Vui lòng nhập đầy đủ thông tin.\n Không bỏ trống phần nào.");';
-                    echo 'location.href="index.php?controller=bus&action=edit&id=<?php echo $id;?>";</script>';
+                    echo '<script>
+                        alert("Không tồn tại xe chạy");
+                        window.history.back();
+                    </script>';
                 }
             } else {
                 header('location: ../');

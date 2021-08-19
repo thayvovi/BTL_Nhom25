@@ -27,24 +27,24 @@
                     </thead>
                     <tbody>
                         <?php foreach ($buses as $bus) {
-    foreach ($routes as $route) {
-        if ($bus->idRoute == $route->id) {
-            echo '<tr>';
-            echo '<td>'.$bus->id.'</td>';
-            echo '<td>'.$route->routeName.'</td>';
-            echo '<td>'.$bus->date.'</td>';
-            echo '<td>'.$bus->time.'</td>';
-            echo '<td><a href="#" data-toggle="modal" data-target="#seat"><button
-                        class="btn btn-primary mr-2">Đặt vé</button></a></td>';
-            echo '<td>';
-            echo '<a class="mr-2" href="index.php?controller=bus&action=edit&id='.$bus->id.'"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>';
-            // echo '<button class="btn btn-danger" data-toggle="modal" data-target="#deleteBus"><i class="fas fa-trash"></i></button>';
-            echo '<a class="btn btn-danger" onclick = "return deleteAjax('.$bus->id.')"><i class="fas fa-trash"></i></a>';
-            echo '</td>';
-            echo '</tr>';
-        }
-    }
-} ?>
+                            foreach ($routes as $route) {
+                                if ($bus->idRoute == $route->id) {
+                                    echo '<tr>';
+                                    echo '<td>'.$bus->id.'</td>';
+                                    echo '<td>'.$route->routeName.'</td>';
+                                    echo '<td>'.$bus->date.'</td>';
+                                    echo '<td>'.$bus->time.'</td>';
+                                    echo '<td><a href="../index.php?controller=cars&action=create&id= '.$bus->id.'" ><button
+                                                class="btn btn-primary mr-2">Đặt vé</button></a></td>';
+                                    echo '<td>';
+                                    echo '<a class="mr-2" href="index.php?controller=bus&action=edit&id='.$bus->id.'"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>';
+                                    // echo '<button class="btn btn-danger" data-toggle="modal" data-target="#deleteBus"><i class="fas fa-trash"></i></button>';
+                                    echo '<a class="btn btn-danger" onclick = "return deleteAjax('.$bus->id.')"><i class="fas fa-trash"></i></a>';
+                                    echo '</td>';
+                                    echo '</tr>';
+                                }
+                            }
+                        } ?>
                         <div class="modal fade" id="seat" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -59,12 +59,12 @@
                                         <div class="wrapper">
                                             <div class="row">
                                                 <?php for ($i = 1; $i <= $bus->totalSeat; ++$i) {
-    if ($i <= 2) {
-        echo '<div class="seat driver"></div>';
-    } else {
-        echo '<div class="seat" id="seat">'.$i.'</div>';
-    }
-} ?>
+                                                    if ($i <= 2) {
+                                                        echo '<div class="seat driver"></div>';
+                                                    } else {
+                                                        echo '<div class="seat" id="seat">'.$i.'</div>';
+                                                    }
+                                                } ?>
 
                                             </div>
                                         </div>

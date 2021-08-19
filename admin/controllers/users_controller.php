@@ -144,7 +144,7 @@ class UsersController extends BaseController
                         echo '<script>alert("Vui lòng kiểm tra thông tin nhập và không để trống ô");
                             window.history.back();
                         </script>';
-                    } elseif (!is_numeric($sdt)) {//chưa kiểm tra được định dạng
+                    } elseif (!preg_match('/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/', $sdt)) {//chưa kiểm tra được định dạng
                         echo '<script>alert("Số điện thoại không đúng định dạng");
                             window.history.back();
                         </script>';

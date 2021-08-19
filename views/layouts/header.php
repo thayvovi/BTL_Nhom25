@@ -29,7 +29,7 @@
             </button>
 
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2" type="search" placeholder="Nhập tên tuyến xe cần tìm" aria-label="Search">
                 <button class="btn btn-success" type="submit">Search</button>
             </form>
 
@@ -38,27 +38,27 @@
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./">Trang chủ</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.php?controller=cars&action=index">Lịch trình</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.php?controller=pages&action=about">Liên hệ</a></li>
-                    <?php if(isset($_SESSION['User_id'])): ?>
+                    <?php if (isset($_SESSION['User_id'])) { ?>
                        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                           <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                               <a class="nav-link btn btn-primary dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user"></i><span class="p-1"></span><?php echo $_SESSION['User_name']?>
+                                <i class="fas fa-user"></i><span class="p-1"></span><?php echo $_SESSION['User_name']; ?>
                               </a>
                               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                <?php if(isset($_SESSION['User_level']) && $_SESSION['User_level'] == 1): ?>
+                                <?php if (isset($_SESSION['User_level']) && $_SESSION['User_level'] == 1) { ?>
                                     <li><a class="dropdown-item" href="./admin/">Đi đến trang admin</a></li>
-                                <?php endif ?>
-                                <li><a class="dropdown-item" href="index.php?controller=users&action=edit&id=<?php echo $_SESSION['User_id'];?>">Chỉnh sửa thông tin</a></li>
-                                <li><a class="dropdown-item" href="index.php?controller=cars&action=showTicket&id=<?php echo $_SESSION['User_id'];?>">Xem vé xe</a></li>
+                                <?php } ?>
+                                <li><a class="dropdown-item" href="index.php?controller=users&action=edit&id=<?php echo $_SESSION['User_id']; ?>">Chỉnh sửa thông tin</a></li>
+                                <li><a class="dropdown-item" href="index.php?controller=cars&action=showTicket&id=<?php echo $_SESSION['User_id']; ?>">Xem vé xe</a></li>
                                 <li><a class="dropdown-item" href="index.php?controller=users&action=logout">Đăng xuất</a></li>
                               </ul>
                             </li>
                           </ul>
                         </div>
-                    <?php else: ?>
+                    <?php } else { ?>
                         <li class="nav-item"><a class="nav-link btn btn-primary px-lg-3 py-3 py-lg-4" href="index.php?controller=users&action=index">Đăng nhập</a></li>
-                    <?php endif ?>
+                    <?php } ?>
                 </ul>
             </div>
         </div>

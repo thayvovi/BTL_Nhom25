@@ -59,27 +59,43 @@ class UsersController extends BaseController
 
     public function store()
     {
-        $ten_khach = isset($_POST['ten_khach']) ? $_POST['ten_khach'] : '';
-        $mat_khau = isset($_POST['mat_khau']) ? $_POST['mat_khau'] : '';
-        $sdt = isset($_POST['sdt']) ? $_POST['sdt'] : '';
-        $dia_chi = isset($_POST['dia_chi']) ? $_POST['dia_chi'] : '';
-        $level = 0;
+        if (isset($_POST['ten_khach']) && isset($_POST['mat_khau']) && isset($_POST['sdt']) && isset($_POST['dia_chi'])) {
+            $ten_khach = $_POST['ten_khach'];
+            $mat_khau = $_POST['mat_khau'];
+            $sdt = $_POST['sdt'];
+            $dia_chi = $_POST['dia_chi'];
+            $level = 0;
 
-        if ($ten_khach != '' && $mat_khau != '' && $sdt != '' && $dia_chi != '') {
             $check = User::checkUser($_POST['sdt']);
-            if ($check->sdt !== $sdt) {
-                if (is_numeric($sdt)) {
-                    $mat_khau = md5($mat_khau);
-                    User::insert($ten_khach, $mat_khau, $sdt, $dia_chi, $level);
-                    header('location: index.php?controller=users&action=index&notify=success');
-                } else {
-                    header('location: index.php?controller=users&action=create&notify=error');
-                }
+            if ($ten_khach !== '' && $mat_khau !== '' && $sdt !== '' && $dia_chi !== '') {
+                echo "<script>
+                    alert('Vui lòng không để trống các ô');
+                    window.history.back();
+                </script>";
+            } elseif ($sdt == $check->sdt) {/// cần fix
+                echo "<script>
+                    alert('Số điện thoại này đã tồn tại!!!');
+                    window.history.back();
+                </script>";
             } else {
-                header('location: index.php?controller=users&action=create&notify=error');
+                if (preg_match('/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/', $sdt)) {
+                    User::insert($ten_khach, $mat_khau, $sdt, $dia_chi, $level);
+                    echo "<script>
+                        alert('Đăng ký thành công!');
+                        location.ref = 'index.php?controller=users&action=index';
+                    </script>";
+                } else {
+                    echo "<script>
+                        alert('Số điện thoại không đúng định dạng');
+                        window.history.back();
+                    </script>";
+                }
             }
         } else {
-            header('location: index.php?controller=users&action=create&notify=error');
+            echo "<script>
+                alert('Không tìm thấy dữ liệu đăng ký!');
+                window.history.back();
+            </script>";
         }
     }
 
@@ -93,48 +109,73 @@ class UsersController extends BaseController
 
     public function update()
     {
-        $ten_khach = isset($_POST['ten_khach']) ? $_POST['ten_khach'] : '';
-        $sdt = isset($_POST['sdt']) ? $_POST['sdt'] : '';
-        $dia_chi = isset($_POST['dia_chi']) ? $_POST['dia_chi'] : '';
-        if ($ten_khach != '' && $sdt != '' && $dia_chi != '') {
-            $getID = User::find($_SESSION['User_id']);
-            if ($ten_khach != $getID->ten_khach || $sdt != $getID->sdt || $dia_chi != $getID->dia_chi) {
-                if (is_numeric($sdt)) {
-                    User::update($getID->id, $ten_khach, $getID->mat_khau, $sdt, $dia_chi, );
-                    header("location: index.php?controller=users&action=edit&id=$getID->id&notify=success");
+        if (isset($_SESSION['User_id'])) {
+            if (isset($_POST['ten_khach']) && isset($_POST['sdt']) && isset($_POST['dia_chi'])) {
+                $ten_khach = trim(addslashes(htmlspecialchars($_POST['ten_khach'])));
+                $sdt = trim(addslashes(htmlspecialchars($_POST['sdt'])));
+                $dia_chi = trim(addslashes(htmlspecialchars($_POST['dia_chi'])));
+
+                if ($ten_khach === '' || $sdt === '' || $dia_chi === '') {
+                } elseif (!preg_match('/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/', $sdt)) {
+                    echo "<script>
+                        alert('Số điện thoại không đúng định dạng');
+                        window.history.back();
+                    </script>";
                 } else {
-                    header("location: index.php?controller=users&action=edit&id=$getID->id&notify=error");
+                    $getID = User::find($_SESSION['User_id']);
+                    User::update($_SESSION['User_id'], $ten_khach, $getID->mat_khau, $sdt, $dia_chi);
+                    echo '<script>
+                        alert("Sửa thành công");
+                        location.href = "index.php?controller=users&action=edit&id='.$_SESSION['User_id'].'";
+                    </script>';
                 }
             } else {
-                header("location: index.php?controller=users&action=edit&id=$getID->id&notify=error");
+                echo "<script>
+                    alert('Không tồn tại tài khoản này');
+                    window.history.back();
+                </script>";
             }
         } else {
-            header("location: index.php?controller=users&action=edit&id=$check->id&notify=error");
+            header('location: index.php?controller=users&action=index');
         }
     }
 
     public function changePassWord()
     {
-        $mat_khau_cu = isset($_POST['mat_khau_cu']) ? $_POST['mat_khau_cu'] : '';
-        $mat_khau_moi = isset($_POST['mat_khau_moi']) ? $_POST['mat_khau_moi'] : '';
-        $re_pass = isset($_POST['re-pass']) ? $_POST['re-pass'] : '';
+        if (isset($_SESSION['User_id'])) {
+            if (isset($_POST['mat_khau_cu']) && isset($_POST['mat_khau_moi']) && isset($_POST['re-pass'])) {
+                $mat_khau_cu = trim(addslashes(htmlspecialchars($_POST['mat_khau_cu'])));
+                $mat_khau_moi = trim(addslashes(htmlspecialchars($_POST['mat_khau_moi'])));
+                $re_pass = trim(addslashes(htmlspecialchars($_POST['re-pass'])));
 
-        if ($mat_khau_cu != '' && $mat_khau_moi != '' && $re_pass != '') {
-            $getID = User::find($_SESSION['User_id']);
-            $mat_khau_cu = md5($mat_khau_cu);
-            if ($mat_khau_cu == $getID->mat_khau) {
-                if ($mat_khau_moi == $re_pass) {
-                    $mat_khau_moi = md5($mat_khau_moi);
-                    User::update($getID->id, $getID->ten_khach, $mat_khau_moi, $getID->sdt, $getID->dia_chi);
-                    header("location: index.php?controller=users&action=edit&id=$getID->id&notify=success");
+                if ($mat_khau_cu === '' || $mat_khau_moi === '' || $re_pass === '') {
+                    echo '<script>
+                        alert("Không để trống các ô phần đổi mật khẩu");
+                        location.href = "index.php?controller=users&action=edit&id='.$_SESSION['User_id'].'";
+                    </script>';
+                } elseif ($mat_khau_moi !== $re_pass) {
+                    echo '<script>
+                        alert("Xác nhận mật khẩu không trùng khớp");
+                        location.href = "index.php?controller=users&action=edit&id='.$_SESSION['User_id'].'";
+                    </script>';
                 } else {
-                    header("location: index.php?controller=users&action=edit&id=$getID->id&notify=error");
+                    $getID = User::find($_SESSION['User_id']);
+                    if (md5($mat_khau_cu) === $getID->mat_khau) {
+                        echo '<script>
+                            alert("Vui lòng xem lại mật khẩu cũ");
+                            window.history.back();
+                        </script>';
+                    } else {
+                        User::update($_SESSION['User_id'], $getID->ten_khach, md5($mat_khau_moi), $getID->sdt, $getID->dia_chi);
+                        echo '<script>
+                            alert("Cập nhật thành công");
+                            location.href = "index.php?controller=users&action=edit&id='.$_SESSION['User_id'].'";
+                        </script>';
+                    }
                 }
-            } else {
-                header("location: index.php?controller=users&action=edit&id=$getID->id&notify=error");
             }
         } else {
-            header("location: index.php?controller=users&action=edit&id=$check->id&notify=error");
+            header('location: index.php?controller=users&action=index');
         }
     }
 }

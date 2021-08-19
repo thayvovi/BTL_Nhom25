@@ -34,7 +34,8 @@
             echo '<td>'.$route->routeName.'</td>';
             echo '<td>'.$bus->date.'</td>';
             echo '<td>'.$bus->time.'</td>';
-            echo '<td><a href="#" data-toggle="modal" data-target="#seat">'.$bus->totalSeat.'</a></td>';
+            echo '<td><a href="#" data-toggle="modal" data-target="#seat"><button
+                        class="btn btn-primary mr-2">Đặt vé</button></a></td>';
             echo '<td>';
             echo '<a class="mr-2" href="index.php?controller=bus&action=edit&id='.$bus->id.'"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>';
             // echo '<button class="btn btn-danger" data-toggle="modal" data-target="#deleteBus"><i class="fas fa-trash"></i></button>';
@@ -44,7 +45,7 @@
         }
     }
 } ?>
-                        <!-- <div class="modal fade" id="seat" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="seat" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -69,13 +70,13 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a class="btn btn-primary" href="login.html">Đặt vé hộ</a>
+                                        <a class="btn btn-primary" href="../index.php?controller=cars&action=create&id= <?php echo $bus->id;?>">Đặt vé hộ</a>
                                         <button class="btn btn-secondary" type="button"
                                             data-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                     </tbody>
                 </table>
             </div>

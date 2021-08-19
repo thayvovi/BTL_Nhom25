@@ -68,4 +68,16 @@ class BusModel
         $query->execute(['id' => $id]);
         $db = DB::disconnect();
     }
+
+    public static function count()
+    {
+        $db = DB::getInstance();
+
+        $query = $db->prepare('SELECT count(id) FROM xe');
+        $query->execute();
+        $number_of_rows = $query->fetchColumn();
+
+        return $number_of_rows;
+        $db = DB::disconnect();
+    }
 }

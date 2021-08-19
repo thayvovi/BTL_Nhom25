@@ -28,11 +28,6 @@
                 <i class="fas fa-bars"></i>
             </button>
 
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Nhập tên tuyến xe cần tìm" aria-label="Search">
-                <button class="btn btn-success" type="submit">Search</button>
-            </form>
-
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto py-4 py-lg-0">
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./">Trang chủ</a></li>

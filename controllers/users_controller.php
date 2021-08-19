@@ -17,31 +17,45 @@ class UsersController extends BaseController
 
     public function postIndex()
     {
-        if (!empty($_POST['sdt']) || !empty($_POST['mat_khau'])) {
-            $sdt = $_POST['sdt'];
-            $mat_khau = $_POST['mat_khau'];
-            $mat_khau = md5($mat_khau);
+        if (isset($_POST['sdt']) && isset($_POST['mat_khau'])) {
+            $sdt = trim(addslashes(htmlspecialchars($_POST['sdt'])));
+            $mat_khau = trim(addslashes(htmlspecialchars($_POST['mat_khau'])));
 
-            $getAccount = User::checkUser($_POST['sdt']);
-            if ($sdt == $getAccount->sdt) {
-                $_SESSION['User_sdt'] = $getAccount->sdt;
-                if ($mat_khau == $getAccount->mat_khau) {
+            if ($sdt === '' || $mat_khau == '') {
+                echo "<script>
+                    alert('Vui lòng không để trống số điện thoại hoặc mật khẩu');
+                    window.history.back();
+                </script>";
+            } elseif (!preg_match('/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/', $sdt)) {
+                echo "<script>
+                    alert('Số điện thoại không đúng định dạng!!!');
+                    window.history.back();
+                </script>";
+            } else {
+                $getAccount = User::checkUser($_POST['sdt']);
+                $mat_khau = md5($mat_khau);
+                if ($sdt == $getAccount->sdt && $mat_khau == $getAccount->mat_khau) {
+                    $_SESSION['User_sdt'] = $sdt;
                     $_SESSION['User_id'] = $getAccount->id;
                     $_SESSION['User_name'] = $getAccount->ten_khach;
                     $_SESSION['User_level'] = $getAccount->level;
-                    if ($getAccount->level == false) {
-                        header('Location: ./');
-                    } else {
+                    if ($getAccount->level == true) {
                         header('Location: admin');
+                    } else {
+                        header('Location: ./');
                     }
                 } else {
-                    header('location: index.php?controller=users&action=index&notify=error');
+                    echo "<script>
+                        alert('Số điện thoại hoặc mật khẩu không chính xác!');
+                        window.history.back();
+                    </script>";
                 }
-            } else {
-                header('location: index.php?controller=users&action=index&notify=error');
             }
         } else {
-            header('location: index.php?controller=users&action=index&notify=error');
+            echo "<script>
+                alert('Không lấy được dữ liệu');
+                window.history.back();
+            </script>";
         }
     }
 
@@ -60,33 +74,32 @@ class UsersController extends BaseController
     public function store()
     {
         if (isset($_POST['ten_khach']) && isset($_POST['mat_khau']) && isset($_POST['sdt']) && isset($_POST['dia_chi'])) {
-            $ten_khach = $_POST['ten_khach'];
-            $mat_khau = $_POST['mat_khau'];
-            $sdt = $_POST['sdt'];
-            $dia_chi = $_POST['dia_chi'];
+            $ten_khach = trim(addslashes(htmlspecialchars($_POST['ten_khach'])));
+            $mat_khau = trim(addslashes(htmlspecialchars($_POST['mat_khau'])));
+            $sdt = trim(addslashes(htmlspecialchars($_POST['sdt'])));
+            $dia_chi = trim(addslashes(htmlspecialchars($_POST['dia_chi'])));
             $level = 0;
 
-            $check = User::checkUser($_POST['sdt']);
-            if ($ten_khach !== '' && $mat_khau !== '' && $sdt !== '' && $dia_chi !== '') {
+            if ($ten_khach === '' || $mat_khau === '' || $sdt === '' || $dia_chi === '') {
                 echo "<script>
                     alert('Vui lòng không để trống các ô');
                     window.history.back();
                 </script>";
-            } elseif ($sdt == $check->sdt) {/// cần fix
+            } elseif (!preg_match('/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/', $sdt)) {
                 echo "<script>
-                    alert('Số điện thoại này đã tồn tại!!!');
+                    alert('Số điện thoại không đúng định dạng!!!');
                     window.history.back();
                 </script>";
             } else {
-                if (preg_match('/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/', $sdt)) {
+                if (User::checkSDT($sdt) == true) {
                     User::insert($ten_khach, $mat_khau, $sdt, $dia_chi, $level);
                     echo "<script>
                         alert('Đăng ký thành công!');
-                        location.ref = 'index.php?controller=users&action=index';
+                        location.href = 'index.php?controller=users&action=index';
                     </script>";
                 } else {
                     echo "<script>
-                        alert('Số điện thoại không đúng định dạng');
+                        alert('Số điện thoại đã tồn tại');
                         window.history.back();
                     </script>";
                 }

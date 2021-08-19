@@ -89,4 +89,16 @@ class User
             $ex->getMessage();
         }
     }
+
+    public static function count()
+    {
+        $db = DB::getInstance();
+
+        $query = $db->prepare('SELECT count(id) FROM users WHERE level = 1');
+        $query->execute();
+        $number_of_rows = $query->fetchColumn();
+
+        return $number_of_rows;
+        $db = DB::disconnect();
+    }
 }

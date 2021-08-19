@@ -40,4 +40,16 @@ class Ticket
             echo 'Có lỗi xảy ra với user '.$e->getMessage();
         }
     }
+
+    public static function count()
+    {
+        $db = DB::getInstance();
+
+        $query = $db->prepare('SELECT count(id) FROM ticket_details');
+        $query->execute();
+        $number_of_rows = $query->fetchColumn();
+
+        return $number_of_rows;
+        $db = DB::disconnect();
+    }
 }

@@ -1,4 +1,4 @@
-<?php $title = 'Tuyến xe' ?>
+<?php $title = 'Tuyến xe'; ?>
 <header class="masthead" style="background-image: url('assets/img/home-bg2.jpg')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -27,20 +27,19 @@
                 </tr>
               </thead>
               <tbody>
-            <?php 
-              foreach ($xe as $xe) {
-                foreach ($routes as $route) {
-                  if($xe->idRoute == $route->id){
-                    echo '<tr>';
-                    echo '<td>'.$route->routeName.'</td>';
-                    echo '<td>'.$xe->date.'</td>';
-                    echo '<td>'.$xe->time.'</td>';
-                    echo '<td>'.$route->totalBus.'</td>';?>
-                    <td><a href="index.php?controller=cars&action=create&id=<?php echo $xe->idRoute;?>"><button class="btn btn-primary">Đặt vé</button></a></td>
+            <?php foreach ($xe as $xe) {
+    foreach ($routes as $route) {
+        if ($xe->idRoute == $route->id) {
+            echo '<tr>';
+            echo '<td>'.$route->routeName.'</td>';
+            echo '<td>'.$xe->date.'</td>';
+            echo '<td>'.$xe->time.'</td>';
+            echo '<td>'.$route->totalBus.'</td>'; ?>
+                    <td><a href="index.php?controller=cars&action=create&id=<?php echo $xe->id; ?>"><button class="btn btn-primary">Đặt vé</button></a></td>
                     <?php echo '</tr>';
-                  }
-                }
-              }
+        }
+    }
+}
             ?>
             </tbody>
             </table>

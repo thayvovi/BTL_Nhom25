@@ -32,9 +32,9 @@ i<?php $title = 'Quản lý vé xe'; ?>
     echo '<td>'.$ticket->id.'</td>';
     echo '<td>'.$ticket->userName.'</td>';
     echo '<td> 0'.$ticket->sdt.'</td>';
-    echo '<td> 0'.$ticket->seat.'</td>';
-    echo '<td> 0'.$ticket->ngay.'</td>';
-    echo '<td> 0'.$ticket->gio.'</td>';
+    echo '<td> '.$ticket->seat.'</td>';
+    echo '<td> '.$ticket->ngay.'</td>';
+    echo '<td> '.$ticket->gio.'</td>';
     echo '<td>'.$ticket->diem_don.'</td>';
     echo '<td>';
 

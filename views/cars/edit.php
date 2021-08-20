@@ -1,4 +1,4 @@
-<?php $title="Xem vé xe" ?>
+<?php $title = 'Xem vé xe'; ?>
 <header class="masthead" style="background-image: url('assets/img/home-bg2.jpg')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -33,13 +33,13 @@
 					</thead>
 					<tbody>
 
-						<?php foreach($tickets as $ticket) {
-							if ($ticket->sdt === $_SESSION['User_sdt']){
-								foreach ($buses as $bus) {
-									if($ticket->idBus === $bus->id){
-										foreach ($routes as $route) {
-											if ($bus->idRoute === $route->id) {
-						?>
+						<?php foreach ($tickets as $ticket) {
+    if ($ticket->sdt === ltrim($_SESSION['User_sdt'], '0')) {
+        foreach ($buses as $bus) {
+            if ($ticket->idBus === $bus->id) {
+                foreach ($routes as $route) {
+                    if ($bus->idRoute === $route->id) {
+                        ?>
 								<tr>
 									<td><?php echo $route->routeName; ?></td>
 					              	<td><?php echo $ticket->userName; ?></td>
@@ -53,7 +53,13 @@
 		                                <a href="#"><button class="btn btn-danger"><i class="fas fa-trash"></i></button></a>
 		                            </td>
 					            </tr>
-						<?php } } } } } }?>
+						<?php
+                    }
+                }
+            }
+        }
+    }
+}?>
 			        </tbody>
 				</table>
 			</div>

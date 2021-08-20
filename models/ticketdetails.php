@@ -1,46 +1,98 @@
-<?php  
-class Ticket{
-	public $id, $idBus, $userName,$sdt,$seat,$ngay,$gio,$diem_don;
+<?php
 
-	public function __construct($id, $idBus, $userName,$sdt,$seat,$ngay,$gio,$diem_don){
-		$this->id = $id; 
-		$this->idBus = $idBus; 
-		$this->userName = $userName;
-		$this->sdt = $sdt;
-		$this->seat = $seat;
-		$this->ngay = $ngay;
-		$this->gio = $gio;
-		$this->diem_don = $diem_don;
-	}
+class Ticket
+{
+    public $id;
+    public $idBus;
+    public $userName;
+    public $sdt;
+    public $seat;
+    public $ngay;
+    public $gio;
+    public $diem_don;
 
-	static function read(){
-		$list = [];
-		$db = DB::getInstance();
+    public function __construct($id, $idBus, $userName, $sdt, $seat, $ngay, $gio, $diem_don)
+    {
+        $this->id = $id;
+        $this->idBus = $idBus;
+        $this->userName = $userName;
+        $this->sdt = $sdt;
+        $this->seat = $seat;
+        $this->ngay = $ngay;
+        $this->gio = $gio;
+        $this->diem_don = $diem_don;
+    }
 
-		$query = $db->query('SELECT * FROM ticket_details');
+    public static function read()
+    {
+        $list = [];
+        $db = DB::getInstance();
 
-		foreach($query->fetchAll() as $item){
-			$list[] = new Ticket($item['id'],$item['idBus'],$item['userName'],$item['sdt'],$item['seat'],$item['ngay'],$item['gio'],$item['diem_don']);
-		}
+        $query = $db->query('SELECT * FROM ticket_details');
 
-		return $list;
-	}
+        foreach ($query->fetchAll() as $item) {
+            $list[] = new Ticket($item['id'], $item['idBus'], $item['userName'], $item['sdt'], $item['seat'], $item['ngay'], $item['gio'], $item['diem_don']);
+        }
 
-	static function insert($id,$userName,$sdt,$seat,$ngay,$gio,$diem_don){
-		try {
-			$db = DB::getInstance();
-			$getBus = $db->prepare('SELECT id FROM xe WHERE idRoute =:id');
-			$getBus->execute(array('id'=>$id));
+        return $list;
+    }
 
-			if($getBus->rowCount() > 0){
-				$bus = $getBus->fetch();
+    public static function insert($id, $userName, $sdt, $seat, $ngay, $gio, $diem_don)
+    {
+        try {
+            $db = DB::getInstance();
 
-				$insert = $db->prepare('INSERT INTO ticket_details SET idBus=:idBus,userName=:userName,sdt=:sdt,seat=:seat,ngay=:ngay,gio=:gio,diem_don=:diem_don');
-				
-				$insert->execute(array("idBus"=>$bus['id'],"userName"=>$userName,"sdt"=>$sdt,"seat"=>$seat,"ngay"=>$ngay,"gio"=>$gio,"diem_don"=>$diem_don));
-			}
-		} catch (PDOException $e) {
-			echo 'Có lỗi xảy ra '.$e->getMessage();
-		}
-	}
+            $getBus = $db->prepare('SELECT id FROM xe WHERE id =:id');
+            $getBus->execute(['id' => $id]);
+
+            if ($getBus->rowCount() > 0) {
+                $bus = $getBus->fetch();
+
+                $insert = $db->prepare('INSERT INTO ticket_details SET idBus=:idBus,userName=:userName,sdt=:sdt,seat=:seat,ngay=:ngay,gio=:gio,diem_don=:diem_don');
+
+                $insert->execute(['idBus' => $bus['id'], 'userName' => $userName, 'sdt' => $sdt, 'seat' => $seat, 'ngay' => $ngay, 'gio' => $gio, 'diem_don' => $diem_don]);
+            }
+        } catch (PDOException $e) {
+            echo 'Có lỗi xảy ra '.$e->getMessage();
+        }
+    }
+
+    public static function find($id)
+    {
+        try {
+            $db = DB::getInstance();
+
+            $list = [];
+
+            $query = $db->prepare('SELECT * FROM ticket_details WHERE idBus = :id');
+            $query->execute(['id' => $id]);
+
+            foreach ($query->fetchAll() as $item) {
+                // $list[] = new Ticket($item['id'], $item['idBus'], $item['userName'], $item['sdt'], $item['seat'], $item['ngay'], $item['gio'], $item['diem_don']);
+                $list = [$item['seat']];
+            }
+
+            return $list;
+
+            // $db = DB::getInstance();
+
+            // $query = $db->prepare('SELECT seat FROM ticket_details WHERE idBus = :id');
+            // $query->execute(['id' => $id]);
+
+            // $item = $query->fetchAll(); //lấy dữ liệu của id
+            // // if (isset($item['id'])) {
+            // //     return new Ticket($item['id'], $item['idBus'], $item['userName'], $item['sdt'], $item['seat'], $item['ngay'], $item['gio'], $item['diem_don']);
+            // // }
+
+            // // return null;
+
+            // if (isset($item['id'])) {
+            //     return $item['seat'];
+            // }
+
+            // return null;
+        } catch (PDOException $e) {
+            echo 'Có lỗi xảy ra '.$e->getMessage();
+        }
+    }
 }

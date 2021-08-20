@@ -101,8 +101,8 @@
                                         </div>
                                     </div>
                                 <?php echo '<div class="form-group">';
-                    echo '<input type="text" id="seatSelected" class="form-control" name="seat" placeholder="Hãy nhập ghế cần đặt hoặc chọn ghế trên sơ đồ">';
-                    echo '<p style="color:red;">Lưu ý: Mỗi người chỉ đặt được 1 chỗ!</p>  ';
+                    echo '<input type="text" style="margin-bottom:20px;" id="seatSelected" class="form-control" name="seat" placeholder="Hãy nhập ghế cần đặt hoặc chọn ghế trên sơ đồ">';
+                    //echo '<p style="color:red;">Lưu ý: Mỗi người chỉ đặt được 1 chỗ!</p>  ';
                     echo '</div>';
                 }
             }
@@ -114,7 +114,7 @@
                ?>
             </form>
             <div class="form-group">
-                <button class="form-control btn btn-primary" type="submit" form="frm">Đặt vé</button>
+                <button class="form-control btn btn-primary" style="margin-bottom:20px;" type="submit" form="frm">Đặt vé</button>
             </div>
             </div>    
         </div>

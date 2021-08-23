@@ -75,28 +75,28 @@
                                     <div class="wrapper">
                                         <div class="row">
                                             <?php for ($i = 1; $i <= $xe->totalSeat; ++$i) {
-                        if ($i <= 2) {
-                            echo '<div class="seat driver"></div>';
-                        } else {
-                            foreach ($tickets as $ticket) {
-                                // if ($ticket->idBus == $id) {
-                                if ($i == $ticket) {
-                                    echo '<div class="seat occupied">'.$i.'</div>';
-                                } else {
-                                    echo '<div class="seat" id="seat">'.$i.'</div>';
-                                }
-                                // }
-                            }
+                                                if ($i <= 2) {
+                                                    echo '<div class="seat driver"></div>';
+                                                } else {
+                                                    foreach ($tickets as $ticket) {
+                                                        // if ($ticket->idBus == $id) {
+                                                        if ($i == $ticket) {
+                                                            echo '<div class="seat occupied">'.$i.'</div>';
+                                                        } else {
+                                                            echo '<div class="seat" id="seat">'.$i.'</div>';
+                                                        }
+                                                        // }
+                                                    }
 
-                            // if ($ticket->seat == $id) {
-                            // if ($i == $tickets) {
-                            //     echo '<div class="seat occupied">'.$tickets->seat.'</div>';
-                            // } else {
-                            //     echo '<div class="seat" id="seat">'.$i.'</div>';
-                            // }
-                            // }
-                        }
-                    } ?>
+                                                    // if ($ticket->seat == $id) {
+                                                    // if ($i == $tickets) {
+                                                    //     echo '<div class="seat occupied">'.$tickets->seat.'</div>';
+                                                    // } else {
+                                                    //     echo '<div class="seat" id="seat">'.$i.'</div>';
+                                                    // }
+                                                    // }
+                                                }
+                                            } ?>
                                             
                                         </div>
                                     </div>

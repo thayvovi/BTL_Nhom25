@@ -49,7 +49,7 @@
 					              	<td><?php echo $ticket->gio; ?></td>
 					              	<td><?php echo $ticket->diem_don; ?></td>
 					              	<td>
-		                                <a class="my-auto" href="#"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>
+		                                <!-- <a class="my-auto" href="#"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a> -->
 		                                <a href="#"><button class="btn btn-danger"><i class="fas fa-trash"></i></button></a>
 		                            </td>
 					            </tr>

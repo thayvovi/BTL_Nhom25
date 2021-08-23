@@ -35,7 +35,7 @@
             echo '<td>'.$bus->date.'</td>';
             echo '<td>'.$bus->time.'</td>';
             echo '<td><a href="../index.php?controller=cars&action=create&id= '.$bus->id.'"><button
-                        class="btn btn-primary mr-2">Đặt vé</button></a></td>';
+                        class="btn btn-primary mr-2">'.$bus->totalSeat.'</button></a></td>';
             echo '<td>';
             echo '<a class="mr-2" href="index.php?controller=bus&action=edit&id='.$bus->id.'"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>';
             // echo '<button class="btn btn-danger" data-toggle="modal" data-target="#deleteBus"><i class="fas fa-trash"></i></button>';

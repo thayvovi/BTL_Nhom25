@@ -131,7 +131,7 @@ class BusController extends BaseController
                         BusModel::update($id, $route, $ngay, $gio, $seat);
                         echo '<script>
                             alert("Sửa thành công !!!");
-                            location.href = "index.php?controller=bus&action=home";
+                            location.href = "index.php?controller=bus&action=home2";
                         </script>';
                     }
                 } else {

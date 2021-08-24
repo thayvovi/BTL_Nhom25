@@ -27,7 +27,7 @@ i<?php $title = 'Quản lý vé xe'; ?>
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($ticketes as $ticket) {
+                    <?php foreach ($tickets as $ticket) {
     echo '<tr>';
     echo '<td>'.$ticket->id.'</td>';
     echo '<td>'.$ticket->userName.'</td>';
@@ -36,8 +36,8 @@ i<?php $title = 'Quản lý vé xe'; ?>
     echo '<td> '.$ticket->ngay.'</td>';
     echo '<td> '.$ticket->gio.'</td>';
     echo '<td>'.$ticket->diem_don.'</td>';
-    echo '<td>';
-
+    echo '<td style="text-align:center;">';
+    echo '<a class="btn btn-danger" onclick = "return deleteTicket('.$ticket->id.')"><i class="fas fa-trash"></i></a>';                    
     echo '</td>';
     echo '</tr>';
 } ?>

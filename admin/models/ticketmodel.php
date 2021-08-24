@@ -52,4 +52,13 @@ class Ticket
         return $number_of_rows;
         $db = DB::disconnect();
     }
+
+    public static function delete($id)
+    {
+        $db = DB::getInstance();
+
+        $query = $db->prepare('DELETE FROM ticket_details WHERE id=:id');
+        $query->execute(['id' => $id]);
+        $db = DB::disconnect();
+    }
 }

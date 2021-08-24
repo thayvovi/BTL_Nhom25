@@ -17,7 +17,7 @@ class TicketsController extends BaseController
     {
         $tickets = Ticket::selected();
         $data = [
-            'ticketes' => $tickets,
+            'tickets' => $tickets,
         ];
         if (!empty($_SESSION['User_id'])) {
             if (!empty($_SESSION['User_level']) && $_SESSION['User_level'] == 1) {
@@ -29,6 +29,27 @@ class TicketsController extends BaseController
             echo '<script>';
             echo "location.href= '../index.php?controller=users&action=index';";
             echo '</script>';
+        }
+    }
+
+    public function delete()
+    {
+        if (!empty($_SESSION['User_id'])) {
+            if (!empty($_SESSION['User_level']) && $_SESSION['User_level'] == 1) {
+                if (isset($_POST['id'])) {
+                    $id = $_POST['id'];
+                    if ($id == '') {
+                        echo '<script>alert("Không tồn tại vé xe");
+                            location.reload();
+                        </script>';
+                    } else {
+                        Ticket::delete($id);
+                    }
+                }
+            }
+        } else {
+            echo '<script>alert("Something went wrong!!!");';
+            echo 'location.href="index.php?controller=tickets&action=index';
         }
     }
 }

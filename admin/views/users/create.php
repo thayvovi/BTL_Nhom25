@@ -4,7 +4,6 @@ if (isset($_SERVER['HTTP_REFERER'])) {
     $previous = $_SERVER['HTTP_REFERER'];
 }
 $pass = rand();
-$re_pass = $pass;
 ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -21,16 +20,16 @@ $re_pass = $pass;
             <form action="index.php?controller=users&action=store" method="post" id = "createFormUser" class="row g-3">
               <div class="col-md-6">
                 <label for="ten_khach" class="form-label">Họ tên nhân viên</label>
-                <input id="userName" name="ten_khach" class="form-control form-select" placeholder="Nhập họ tên nhân viên" autofocus>
+                <input id="userName" name="ten_khach" class="form-control" placeholder="Nhập họ tên nhân viên" autofocus>
               </div>
               
               <div class="col-md-6">
                 <label for="sdt" class="form-label">Số điện thoại</label>
-                <input id="sdt" name="sdt" class="form-control form-select" placeholder="Nhập số điện thoại" autofocus>
+                <input id="sdt" name="sdt" class="form-control" placeholder="Nhập số điện thoại" autofocus>
               </div>
-
+              
               <div class="col-md-6">
-              <input type="checkbox" onclick="showPass()">Hiển thị mật khẩu
+                <label class="form-label">Mật khẩu</label>
                 <input type="password" class="form-control" id="password" value = "
                     <?php
                         echo $pass;
@@ -39,16 +38,24 @@ $re_pass = $pass;
                 
               </div>
 
-              <div class="mt-2 col-md-6">
+              <div class="col-md-6">
                 <label class="form-label">Nhập lại mật khẩu</label>
-                <input type="password" class="form-control" id="re_password" value="
+                <input type="password" class="form-control" id="re_password" value = "
                     <?php
-                        echo $re_pass;
+                        echo $pass;
                     ?>
                 " name="re_mat_khau">
               </div>
-
-              <div class="mt-2 col-md-6">
+              <div class="col-md-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="checkShowPass">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Hiển thị mật khẩu
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-12"></div>
+              <div class="col-md-6">
                 <label class="form-label">Địa chỉ</label>
                 <input type="text" class="form-control" placeholder="Nhập địa chỉ" name="dia_chi">
               </div>

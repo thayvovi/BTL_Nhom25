@@ -1,6 +1,6 @@
-<?php $title = 'Chỉnh sửa: '.$user->ten_khach; 
-$previous = "javascript:history.go(-1)";
-if(isset($_SERVER['HTTP_REFERER'])) {
+<?php $title = 'Chỉnh sửa: '.$user->ten_khach;
+$previous = 'javascript:history.go(-1)';
+if (isset($_SERVER['HTTP_REFERER'])) {
     $previous = $_SERVER['HTTP_REFERER'];
 }
 ?>

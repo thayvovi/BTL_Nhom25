@@ -77,23 +77,25 @@ function deleteAjax(id) {
     }
 }
 //show password
-function showPass() {
-    var x = document.getElementById("password");
-    if (x.type === "password") {
-        x.type = "text";
-    } else {
-        x.type = "password";
-    }
-}
-
-// function showRePass() {
-//     var x = document.getElementById("re_password");
+// function showPass() {
+//     var x = document.getElementById("password");
 //     if (x.type === "password") {
 //         x.type = "text";
 //     } else {
 //         x.type = "password";
 //     }
 // }
+
+$('#checkShowPass').change(function() {
+
+    if ($(this).is(":checked")) {
+        $("#password").prop("type", "text");
+        $("#re_password").prop("type", "text");
+    } else {
+        $("#password").prop("type", "password");
+        $("#re_password").prop("type", "password");
+    }
+});
 
 //xoá nhân viên
 function deleteUser(id, idCurrent) {

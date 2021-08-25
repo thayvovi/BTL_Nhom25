@@ -1,13 +1,12 @@
-function ChangeToSlug()
-{
+function ChangeToSlug() {
     var title, slug;
- 
+
     //Lấy text từ thẻ input title 
     title = document.getElementById("title").value;
- 
+
     //Đổi chữ hoa thành chữ thường
     slug = title.toLowerCase();
- 
+
     //Đổi ký tự có dấu thành không dấu
     slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
     slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
@@ -31,4 +30,27 @@ function ChangeToSlug()
     slug = slug.replace(/\@\-|\-\@|\@/gi, '');
     //In slug ra textbox có id “slug”
     document.getElementById('slug').value = slug;
+}
+
+//xoá vé xe
+function deleteTicket2(id) {
+    $confirm = confirm("Bạn có thực sự muốn huỷ vé hay không?");
+    if ($confirm == true) {
+        $.ajax({
+            type: "POST",
+            url: "index.php?controller=cars&action=delete",
+            data: {
+                id: id,
+            },
+            success: function(data) {
+                alert("Huỷ vé thành công");
+                location.reload();
+            },
+            error: function() {
+                alert("Đã có lỗi xảy ra");
+            },
+        });
+    } else {
+        return false;
+    }
 }

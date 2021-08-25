@@ -27,23 +27,23 @@
             foreach ($routes as $route) {
                 if ($xe->idRoute === $route->id) {
                     echo '<div class="form-group">';
-                    echo '<h4>Tên người đi</h4><input type="text" name="name" class="form-control" value = '.$_SESSION['User_name'].' style="color: #e74c3c">';
+                    echo '<h4>Tên người đi</h4><input type="text" name="name" class="form-control" value = '.$_SESSION['User_name'].'>';
                     echo '</div>';
 
                     echo '<div class="form-group">';
-                    echo '<h4>Số điện thoại liên hệ</h4><input type="text" name="sdt" class="form-control" value = '.$_SESSION['User_sdt'].' style="color: #e74c3c">';
+                    echo '<h4>Số điện thoại liên hệ</h4><input type="text" name="sdt" class="form-control" value = '.$_SESSION['User_sdt'].'>';
                     echo '</div>';
 
                     echo '<div class="form-group">';
-                    echo '<h4>Tuyến xe </h4><input type="text" id ="route" name="route" class="form-control" value="'.$route->routeName.'" style="color: #e74c3c">';
+                    echo '<h4>Tuyến xe </h4><input type="text" id ="route" name="route" class="form-control" value="'.$route->routeName.'">';
                     echo '</div>';
 
                     echo '<div class="form-group">';
-                    echo '<h4>Ngày xuất phát</h4><input type="date" id ="ngay" name="date" class="form-control" value="'.$xe->date.'" style="color: #e74c3c">';
+                    echo '<h4>Ngày xuất phát</h4><input type="date" id ="ngay" name="date" class="form-control" value="'.$xe->date.'">';
                     echo '</div>';
 
                     echo '<div class="form-group">';
-                    echo '<h4>Giờ xuất phát</h4><input type="time" id ="gio" name="time" class="form-control" value="'.$xe->time.'" style="color: #e74c3c">';
+                    echo '<h4>Giờ xuất phát</h4><input type="time" id ="gio" name="time" class="form-control" value="'.$xe->time.'">';
                     echo '</div>';
 
                     echo '<div class="form-group">';
@@ -82,7 +82,7 @@
                                                     foreach ($tickets as $ticket) {
                                                         // if ($ticket->idBus == $id) {
                                                         if ($i == $ticket) {
-                                                            echo '<a href="#" class="seat occupied" data-toggle="tooltip" title="Data">'.$i.'</a>';
+                                                            echo '<button type="button" class="seat occupied" data-toggle="modal" data-target="#myModal">'.$i.'</button>';
                                                         } else {
                                                             echo '<div class="seat" id="seat">'.$i.'</div>';
                                                         }
@@ -121,7 +121,27 @@
         </div>
     </div>
 </div>
-<script>
+
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông tin khách đặt:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Data here....
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
     const wrapper = document.querySelector('.wrapper');
     const seat = document.querySelector(".row.seat:not(.occupied)");
 
@@ -141,10 +161,11 @@
         });
     });
     
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    });
+    // $(document).ready(function(){
+    //     $('.modal').modal('show');
+    // });
 </script>
+
 <?php } else {
                    header('location: index.php?controller=users&action=index'); ?>
 <?php

@@ -37,7 +37,7 @@ i<?php $title = 'Quản lý vé xe'; ?>
     echo '<td> '.$ticket->gio.'</td>';
     echo '<td>'.$ticket->diem_don.'</td>';
     echo '<td style="text-align:center;">';
-    echo '<a class="btn btn-danger" onclick = "return deleteTicket('.$ticket->id.')"><i class="fas fa-trash"></i></a>';                    
+    echo '<a class="btn btn-danger" onclick = "return deleteTicket('.$ticket->id.');"><i class="fas fa-trash"></i></a>';
     echo '</td>';
     echo '</tr>';
 } ?>

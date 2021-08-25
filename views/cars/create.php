@@ -1,5 +1,6 @@
 <?php $title = 'Đặt vé xe'; ?>
 <?php if (isset($_SESSION['User_id'])) { ?>
+
 <header class="masthead" style="background-image: url('assets/img/home-bg2.jpg')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -81,7 +82,7 @@
                                                     foreach ($tickets as $ticket) {
                                                         // if ($ticket->idBus == $id) {
                                                         if ($i == $ticket) {
-                                                            echo '<div class="seat occupied">'.$i.'</div>';
+                                                            echo '<a href="#" class="seat occupied" data-toggle="tooltip" title="Data">'.$i.'</a>';
                                                         } else {
                                                             echo '<div class="seat" id="seat">'.$i.'</div>';
                                                         }
@@ -138,6 +139,10 @@
                 console.log(typeof value);
             }
         });
+    });
+    
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
 <?php } else {

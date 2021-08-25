@@ -2,7 +2,7 @@
 $controllers = array(
 	'pages' => ['home','about' ,'error',],
 	//Thêm controller thì bố sung tiếp để nhận
-	'cars'  => ['index','create','store','showTicket'],
+	'cars'  => ['index','create','store','showTicket', 'delete'],
 	'users' => ['index','postIndex','logout','create','edit','store','update','changePassWord'],
 );// Các controllers trong hệ thống và các action có thể gọi ra từ controller đó.
 

@@ -95,4 +95,13 @@ class Ticket
             echo 'Có lỗi xảy ra '.$e->getMessage();
         }
     }
+
+    public static function delete($id)
+    {
+        $db = DB::getInstance();
+
+        $query = $db->prepare('DELETE FROM ticket_details WHERE id=:id');
+        $query->execute(['id' => $id]);
+        $db = DB::disconnect();
+    }
 }

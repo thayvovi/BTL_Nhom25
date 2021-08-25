@@ -78,7 +78,7 @@ function deleteAjax(id) {
 }
 
 function deleteTicket(id) {
-    $confirm = confirm("Bạn có thực sự muốn xoá vé xe hay không?");
+    $confirm = confirm("Bạn có thực sự muốn huỷ vé hay không?");
     if ($confirm == true) {
         $.ajax({
             type: "POST",
@@ -87,7 +87,7 @@ function deleteTicket(id) {
                 id: id,
             },
             success: function(data) {
-                alert("Xoá thành công");
+                alert("Huỷ vé thành công");
                 location.reload();
             },
             error: function() {
@@ -97,6 +97,28 @@ function deleteTicket(id) {
     } else {
         return false;
     }
+}
+
+function deleteTicket2(id) {
+  $confirm = confirm("Bạn có thực sự muốn huỷ vé hay không?");
+  if ($confirm == true) {
+    $.ajax({
+      type: "POST",
+      url: "index.php?controller=cars&action=delete",
+      data: {
+        id: id,
+      },
+      success: function (data) {
+        alert("Huỷ vé thành công");
+        location.reload();
+      },
+      error: function () {
+        alert("Đã có lỗi xảy ra");
+      },
+    });
+  } else {
+    return false;
+  }
 }
 //show password
 // function showPass() {

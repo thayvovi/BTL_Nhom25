@@ -28,19 +28,19 @@ i<?php $title = 'Quản lý vé xe'; ?>
                     </thead>
                     <tbody>
                     <?php foreach ($tickets as $ticket) {
-    echo '<tr>';
-    echo '<td>'.$ticket->id.'</td>';
-    echo '<td>'.$ticket->userName.'</td>';
-    echo '<td> 0'.$ticket->sdt.'</td>';
-    echo '<td> '.$ticket->seat.'</td>';
-    echo '<td> '.$ticket->ngay.'</td>';
-    echo '<td> '.$ticket->gio.'</td>';
-    echo '<td>'.$ticket->diem_don.'</td>';
-    echo '<td style="text-align:center;">';
-    echo '<a class="btn btn-danger" onclick = "return deleteTicket('.$ticket->id.');"><i class="fas fa-trash"></i></a>';
-    echo '</td>';
-    echo '</tr>';
-} ?>
+                        echo '<tr>';
+                        echo '<td>'.$ticket->id.'</td>';
+                        echo '<td>'.$ticket->userName.'</td>';
+                        echo '<td> 0'.$ticket->sdt.'</td>';
+                        echo '<td> '.$ticket->seat.'</td>';
+                        echo '<td> '.$ticket->ngay.'</td>';
+                        echo '<td> '.$ticket->gio.'</td>';
+                        echo '<td>'.$ticket->diem_don.'</td>';
+                        echo '<td style="text-align:center;">';
+                        echo '<a class="btn btn-danger" onclick = "return deleteTicket('.$ticket->id.');"><i class="fas fa-trash"></i></a>';
+                        echo '</td>';
+                        echo '</tr>';
+                    } ?>
                     </tbody>
                 </table>
             </div>

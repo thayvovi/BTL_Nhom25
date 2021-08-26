@@ -91,7 +91,7 @@ class UsersController extends BaseController
                     window.history.back();
                 </script>";
             } else {
-                if (User::checkSDT($sdt) == true) {
+                if (User::checkSDT($sdt) == false) {
                     User::insert($ten_khach, $mat_khau, $sdt, $dia_chi, $level);
                     echo "<script>
                         alert('Đăng ký thành công!');

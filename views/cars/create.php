@@ -72,17 +72,35 @@
                                             <small>Ghế được đặt trước</small>
                                         </li>
                                     </ul>
+                                    <div class="modal" tabindex="-1" role="dialog" id="myModal">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Thông tin khách đặt:</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Data...
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Okay</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="wrapper">
                                         <div class="row">
-                                            <?php for ($i = 1; $i <= $xe->totalSeat; ++$i) {
+                                            <?php for ($i = 1; $i <= $xe->totalSeat; $i++) {
                                                 if ($i <= 2) {
                                                     echo '<div class="seat driver"></div>';
                                                 } else {
                                                     foreach ($tickets as $ticket) {
                                                         // if ($ticket->idBus == $id) {
                                                         if ($i == $ticket) {
-                                                            echo '<button type="button" class="seat occupied" data-toggle="modal" data-target="#myModal">'.$i.'</button>';
+                                                            echo '<a type="button" class="seat occupied" data-toggle="modal" data-target="#myModal">'.$i.'</a>';
                                                         } else {
                                                             echo '<div class="seat" id="seat">'.$i.'</div>';
                                                         }
@@ -122,28 +140,12 @@
     </div>
 </div>
 
-<div class="modal" tabindex="-1" role="dialog" id="myModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Thông tin khách đặt:</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Data here....
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Okay</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <script type="text/javascript">
     const wrapper = document.querySelector('.wrapper');
     const seat = document.querySelector(".row.seat:not(.occupied)");
+    const occupied = document.querySelector(".row.seat.occupied");
 
     $('document').ready(function(){
         $('.wrapper').click(function(e){
@@ -159,6 +161,9 @@
                 console.log(typeof value);
             }
         });
+    });
+    $("#myModal").on("shown.bs.modal", function(){
+        $('.modal-backdrop.in').css('opacity', '0.7');
     });
     
     // $(document).ready(function(){

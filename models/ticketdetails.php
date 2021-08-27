@@ -57,6 +57,26 @@ class Ticket
         }
     }
 
+    public static function update($id, $userName, $sdt, $seat, $ngay, $gio, $diem_don)
+    {
+        try {
+            $db = DB::getInstance();
+
+            $getBus = $db->prepare('SELECT id FROM xe WHERE id =:id');
+            $getBus->execute(['id' => $id]);
+
+            if ($getBus->rowCount() > 0) {
+                $bus = $getBus->fetch();
+
+                $insert = $db->prepare('UPDATE ticket_details SET idBus=:idBus,userName=:userName,sdt=:sdt,seat=:seat,ngay=:ngay,gio=:gio,diem_don=:diem_don WHERE id=:id');
+
+                $insert->execute(['idBus' => $bus['id'], 'userName' => $userName, 'sdt' => $sdt, 'seat' => $seat, 'ngay' => $ngay, 'gio' => $gio, 'diem_don' => $diem_don]);
+            }
+        } catch (PDOException $e) {
+            echo 'Có lỗi xảy ra '.$e->getMessage();
+        }
+    }
+
     public static function find($id)
     {
         try {

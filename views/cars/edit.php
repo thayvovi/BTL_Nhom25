@@ -49,6 +49,7 @@
 					              	<td><?php echo $ticket->gio; ?></td>
 					              	<td><?php echo $ticket->diem_don; ?></td>
 					              	<td style="text-align:center;">
+									  	<a class="mr-2" href="index.php?controller=cars&action=edit&id='<?php echo $ticket->id;?>'"><button class="btn btn-primary"><i class="fas fa-edit"></i></button></a>
                         				<a class="btn btn-danger" onclick = "return deleteTicket2(<?php echo $ticket->id; ?>);"><i class="fas fa-trash"></i></a>
                         			</td>
 					            </tr>

@@ -72,48 +72,51 @@
                                             <small>Ghế được đặt trước</small>
                                         </li>
                                     </ul>
-                                    <div class="modal" tabindex="-1" role="dialog" id="myModal">
+                                    <?php
+                                    echo '<div class="modal" tabindex="-1" role="dialog" id="myModal">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">Thông tin khách đặt:</h5>
+                                                    <h5 class="modal-title">Thông tin khách tại các vị trí ghế đã được đặt:</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <div class="modal-body">
-                                                    Data...
-                                                </div>
+                                                <div class="modal-body">';
+                                                foreach ($tickets as $ticket) {
+                                                    if($ticket->idBus == $id){
+                                                        echo 'Họ tên: '.$ticket->userName.'<br>';
+                                                        echo 'Số điện thoại: '.$ticket->sdt.'<br>';
+                                                        echo 'Số ghế: '.$ticket->seat.'<br>';
+                                                        echo '<br>';
+                                                    }
+                                                    
+                                                }
+                                                echo '</div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Okay</button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>';
+                                    
+                                    ?>
 
                                     <div class="wrapper">
                                         <div class="row">
                                             <?php for ($i = 1; $i <= $xe->totalSeat; $i++) {
                                                 if ($i <= 2) {
                                                     echo '<div class="seat driver"></div>';
-                                                } else {
+                                                } else {                                                   
                                                     foreach ($tickets as $ticket) {
-                                                        // if ($ticket->idBus == $id) {
-                                                        if ($i == $ticket) {
-                                                            echo '<a type="button" class="seat occupied" data-toggle="modal" data-target="#myModal">'.$i.'</a>';
-                                                        } else {
-                                                            echo '<div class="seat" id="seat">'.$i.'</div>';
+                                                        if ($ticket->idBus == $id) {
+                                                            if ($i == $ticket->seat) {
+                                                                echo '<a type="button" class="seat occupied" data-toggle="modal" data-target="#myModal">'.$i.'</a>';
+                                                            } else {
+                                                                echo '<div class="seat" id="seat">'.$i.'</div>';
+                                                            }
                                                         }
-                                                        // }
                                                     }
-
-                                                    // if ($ticket->seat == $id) {
-                                                    // if ($i == $tickets) {
-                                                    //     echo '<div class="seat occupied">'.$tickets->seat.'</div>';
-                                                    // } else {
-                                                    //     echo '<div class="seat" id="seat">'.$i.'</div>';
-                                                    // }
-                                                    // }
                                                 }
                                             } ?>
                                             
@@ -165,6 +168,8 @@
     $("#myModal").on("shown.bs.modal", function(){
         $('.modal-backdrop.in').css('opacity', '0.7');
     });
+
+
     
     // $(document).ready(function(){
     //     $('.modal').modal('show');
@@ -175,3 +180,4 @@
                    header('location: index.php?controller=users&action=index'); ?>
 <?php
                } ?>
+

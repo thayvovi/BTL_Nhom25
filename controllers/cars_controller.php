@@ -36,7 +36,7 @@ class CarsController extends BaseController
             } else {
                 $xe = Bus::all();
                 $route = BusRoute::read();
-                $tickets = Ticket::find($id);
+                $tickets = Ticket::read();
                 $data = [
                     'xe' => $xe,
                     'routes' => $route,

@@ -59,7 +59,7 @@ class CarsController extends BaseController
             $id = trim(addslashes(htmlspecialchars($_GET['id'])));
             if ($id === '') {
                 echo "<script>
-					alert('Không tồn tại xe này');
+					alert('Không tồn tại vé xe');
 					window.history.back();
 				</script>";
             } else {
@@ -204,5 +204,5 @@ class CarsController extends BaseController
             echo '<script>alert("Something went wrong!!!");';
             echo 'location.href="index.php?controller=cars&action=showTicket';
         }
-    }   
+    }
 }

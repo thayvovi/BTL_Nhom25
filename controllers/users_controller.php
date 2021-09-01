@@ -92,7 +92,7 @@ class UsersController extends BaseController
                 </script>";
             } else {
                 if (User::checkSDT($sdt) == false) {
-                    User::insert($ten_khach, $mat_khau, $sdt, $dia_chi, $level);
+                    User::insert($ten_khach, md5($mat_khau), $sdt, $dia_chi, $level);
                     echo "<script>
                         alert('Đăng ký thành công!');
                         location.href = 'index.php?controller=users&action=index';
@@ -173,7 +173,7 @@ class UsersController extends BaseController
                     </script>';
                 } else {
                     $getID = User::find($_SESSION['User_id']);
-                    if (md5($mat_khau_cu) === $getID->mat_khau) {
+                    if (md5($mat_khau_cu) !== $getID->mat_khau) {
                         echo '<script>
                             alert("Vui lòng xem lại mật khẩu cũ");
                             window.history.back();
